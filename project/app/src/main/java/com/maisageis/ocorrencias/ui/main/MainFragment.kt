@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.maisageis.ocorrencias.R
 import com.maisageis.ocorrencias.repository.LoginRepository
@@ -17,10 +18,14 @@ class MainFragment : Fragment() {
     }
 
     private lateinit var viewModel: MainViewModel
+    private lateinit var viewPage: View
+    private lateinit var textView: TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+
+        viewPage = inflater.inflate(R.layout.main_fragment, container, false)
+        return viewPage
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -29,9 +34,14 @@ class MainFragment : Fragment() {
                 MainViewModel.MainViewModelFactory(LoginRepository())
         ).get(MainViewModel::class.java)
 
+        textView = viewPage.rootView.findViewById(R.id.message)
+        textView.text = "Carregando"
+
         viewModel.listUsers.observe(viewLifecycleOwner, Observer {
-            var teste = it
+            textView.text = it.first().login
         })
+
+        viewModel.getUsers()
     }
 
 }
