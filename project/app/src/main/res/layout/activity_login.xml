@@ -41,8 +41,8 @@
             android:id="@+id/txtSenha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Digite a Senha"
-            android:inputType="textWebEmailAddress" />
+            android:hint="@string/digite_a_senha"
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
