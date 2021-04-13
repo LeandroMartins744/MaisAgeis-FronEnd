@@ -113,7 +113,7 @@
         style="@style/TextAppearance.AppCompat.Widget.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cadastarr"
+        android:text="Cadastrar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
