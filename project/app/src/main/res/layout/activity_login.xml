@@ -5,8 +5,12 @@
     android:layout_height="match_parent"
     android:background="@drawable/splashocorrencia"
     android:orientation="vertical"
-    android:padding="30dp"
     tools:context=".ui.login.LoginActivity">
+
+    <include
+        android:id="@+id/loginProgressBar"
+        android:visibility="gone"
+        layout="@layout/load_page"/>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="250dp"
@@ -77,5 +81,4 @@
             android:text="Cadastar-se"
             android:textColor="@color/colorPrimary" />
     </LinearLayout>
-
 </LinearLayout>

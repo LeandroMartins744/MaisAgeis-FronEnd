@@ -1,11 +1,13 @@
 package com.maisageis.ocorrencias.data.util
 
 import com.maisageis.ocorrencias.model.UserModel
+import com.maisageis.ocorrencias.model.response.UserResponse
 import retrofit2.Call
-import retrofit2.http.GET
+import retrofit2.http.*
 
 interface Endpoint {
 
-    @GET("76fa97e3-79fa-42d7-8d2c-bba42eb2e3d5")
-    fun getLogin() : Call<UserModel>
+    @POST("project/api/Login/loginUser")
+    @FormUrlEncoded
+    fun getLogin(@Field("user") user: String, @Field("pass") pass: String) : Call<UserResponse>
 }
