@@ -9,11 +9,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInitializer {
 
-    private val client =  OkHttpClient.Builder()
+    private val client = OkHttpClient.Builder()
             .addInterceptor(BasicAuthInterceptor("maisageis", "123@"))
             .build()
 
-    val gson = GsonBuilder()
+    private val gson = GsonBuilder()
             .setLenient()
             .create();
 

@@ -6,10 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.maisageis.ocorrencias.R
 import com.maisageis.ocorrencias.repository.LoginRepository
+import com.maisageis.ocorrencias.ui.login.LoginViewModel
+import com.maisageis.ocorrencias.util.LoadPage
 
 class MainFragment : Fragment() {
 
@@ -21,6 +25,12 @@ class MainFragment : Fragment() {
     private lateinit var viewPage: View
     private lateinit var textView: TextView
 
+    private lateinit var latitude: TextView
+    private lateinit var longetude: TextView
+    private lateinit var Search: Button
+    private lateinit var result: TextView
+    private lateinit var mainPage: LinearLayout
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
 
@@ -30,18 +40,42 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this,
-                MainViewModel.MainViewModelFactory(LoginRepository())
-        ).get(MainViewModel::class.java)
+        initViews()
+        initOnClicks()
+        loadingPage()
+        mainPage.visibility = View.VISIBLE
 
-        textView = viewPage.rootView.findViewById(R.id.message)
-        textView.text = "Carregando"
-
-        viewModel.listUsers.observe(viewLifecycleOwner, Observer {
-            textView.text = it.first().login
-        })
-
-        viewModel.getUsers()
+       // viewModel.loadData(latitude.text.toString(), longetude.text.toString())
     }
 
+    private fun initViews() {
+        latitude = viewPage.findViewById(R.id.txtLatitude)
+        longetude = viewPage.findViewById(R.id.txtLongetide)
+        Search = viewPage.findViewById(R.id.btnCoordenadas)
+        result = viewPage.findViewById(R.id.txtResult)
+
+        mainPage = viewPage.findViewById(R.id.main)
+        mainPage.visibility = View.VISIBLE
+
+        latitude.text = "-23.6822958"
+        longetude.text = "-46.4421487"
+
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+    }
+
+    private fun initOnClicks() {
+        Search.setOnClickListener {
+            viewModel.loadData(latitude.text.toString(), longetude.text.toString())
+        }
+
+        viewModel.data.observe(this, Observer {
+            result.text = it.toString()
+        })
+    }
+
+    private fun loadingPage() {
+        viewModel.loadPage.observe(this, Observer {
+            LoadPage(viewPage, getString(R.string.carregando), it)
+        })
+    }
 }
