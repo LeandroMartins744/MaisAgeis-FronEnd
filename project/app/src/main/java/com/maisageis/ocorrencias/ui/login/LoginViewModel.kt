@@ -1,39 +1,55 @@
 package com.maisageis.ocorrencias.ui.login
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.maisageis.ocorrencias.data.util.ReturnData
-import com.maisageis.ocorrencias.data.utilutil.LoginData
-import com.maisageis.ocorrencias.model.ErrorResponse
-import com.maisageis.ocorrencias.model.UserModel
+import androidx.lifecycle.*
 import com.maisageis.ocorrencias.model.response.UserResponse
+import com.maisageis.ocorrencias.repository.LoginRepository
+import kotlinx.coroutines.*
+import java.lang.Exception
 
-class LoginViewModel:ViewModel(), ReturnData{
-    val user = MutableLiveData<UserResponse>()
-    val erro = MutableLiveData<ErrorResponse>()
-    val loadPage = MutableLiveData<Boolean>().apply { value = false }
+sealed class LoginViewAction{
+    //open class Success(val item: UserResponse): LoginViewAction()
+   // open class Loading(val loading: Boolean): LoginViewAction()
+   // open class Error(val item: Exception): LoginViewAction()
+}
 
-    var loginData: LoginData = LoginData()
+class LoginViewModel(
+    private val loginRepository: LoginRepository
+): ViewModel() {
 
-    fun loadData(login: String, pass: String){
-        this.Loading()
-        loginData.Login(login, pass, this)
+   // private val _actionView by lazy { MutableLiveData<LoginViewAction>() }
+   // val actionView: LiveData<LoginViewAction> get() = _actionView
+
+   // fun loginUser(login: String, pass: String) {
+        //_actionView.postValue(LoginViewAction.Loading(true))
+       // viewModelScope.launch(Dispatchers.IO) {
+       //     executeLogin()
+       // }
+    //}
+
+    /*private suspend fun executeLogin() {
+        viewModelScope.async(Dispatchers.IO) {
+            return@async loginRepository.getUsers()
+        }.await().fold(::showError, ::showSuccess)
     }
 
-    private fun setLoadPage(value: Boolean){
-        this.loadPage.value = value
+    private fun showError(error: Exception) {
+        _actionView.postValue(LoginViewAction.Loading(false))
+        _actionView.postValue(LoginViewAction.Error(error))
     }
 
-    override fun <UserResponse> Success(result: UserResponse) {
-        user.value = result as com.maisageis.ocorrencias.model.response.UserResponse
+    private fun showSuccess(item: UserResponse) {
+        _actionView.postValue(LoginViewAction.Loading(false))
+        _actionView.postValue(LoginViewAction.Success(item))
     }
 
-    override fun Error(error: ErrorResponse) {
-        this.setLoadPage(false)
-        erro.value = error
+    class LoginViewModelFactory(
+        private val loginRepository: LoginRepository
+    ) : ViewModelProvider.Factory{
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return LoginViewModel(loginRepository) as T
+        }
+
     }
 
-    override fun Loading() {
-        this.setLoadPage(true)
-    }
+     */
 }

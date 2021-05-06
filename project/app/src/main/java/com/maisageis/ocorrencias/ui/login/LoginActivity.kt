@@ -1,4 +1,4 @@
-package com.maisageis.ocorrencias.ui.login
+    package com.maisageis.ocorrencias.ui.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,10 +12,10 @@ import com.google.android.material.textview.MaterialTextView
 import com.maisageis.ocorrencias.MainActivity
 import com.maisageis.ocorrencias.R
 import com.maisageis.ocorrencias.ui.cadastro.CadastroActivity
-import com.maisageis.ocorrencias.util.LoadPage
-import com.maisageis.ocorrencias.util.ShowAlert
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.reflect.KClass
 
-class LoginActivity : AppCompatActivity() {
+    class LoginActivity : AppCompatActivity() {
 
     private lateinit var labelCadastro: MaterialTextView
     private lateinit var txtLogin: TextView
@@ -23,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var btnLogin: Button
     private lateinit var loadPage: View
 
-    lateinit var loginViewModel: LoginViewModel
+    private var loginViewModel: LoginViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,14 +32,27 @@ class LoginActivity : AppCompatActivity() {
         initViews()
         initOnClicks()
         loadingPage()
+       // setObservable()
+        //loginViewModel.loginUser("teste@teste.com", "123456")
     }
+
+   /* private fun setObservable() =
+        loginViewModel.actionView.observe(this, Observer { state ->
+            when(state){
+                is LoginViewAction.Success ->{ }
+                is LoginViewAction.Error -> { }
+                is LoginViewAction.Loading -> { }
+            }
+        })
+
+    */
 
     private fun initOnClicks() {
         labelCadastro.setOnClickListener {
             startActivity(Intent(this@LoginActivity, CadastroActivity::class.java))
         }
 
-        loginViewModel.user.observe(this, Observer {
+      /*  loginViewModel.user.observe(this, Observer {
             if (it == null)
                 ShowAlert(this@LoginActivity, getString(R.string.loginInvalido))
             else {
@@ -47,10 +60,10 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-        })
+        })*/
 
         btnLogin.setOnClickListener {
-            loginViewModel.loadData(txtLogin.text.toString(), txtSenha.text.toString())
+          //  loginViewModel.loadData(txtLogin.text.toString(), txtSenha.text.toString())
         }
     }
 
@@ -61,12 +74,12 @@ class LoginActivity : AppCompatActivity() {
         txtSenha = findViewById(R.id.txtSenha)
         btnLogin = findViewById(R.id.btnLoginLogar)
 
-        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+      //  loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
     }
 
     private fun loadingPage() {
-        loginViewModel.loadPage.observe(this, Observer {
-            LoadPage(loadPage, getString(R.string.carregando), it)
-        })
+        //loginViewModel.loadPage.observe(this, Observer {
+       //     LoadPage(loadPage, getString(R.string.carregando), it)
+        //})
     }
 }

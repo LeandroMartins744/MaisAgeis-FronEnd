@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.maisageis.ocorrencias.data.GetLocationData
 import com.maisageis.ocorrencias.data.util.ReturnData
-import com.maisageis.ocorrencias.data.utilutil.LoginData
 import com.maisageis.ocorrencias.model.ErrorResponse
 import com.maisageis.ocorrencias.model.UserModel
 import com.maisageis.ocorrencias.model.response.DataResult

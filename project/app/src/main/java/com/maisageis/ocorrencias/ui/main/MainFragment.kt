@@ -12,7 +12,6 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.maisageis.ocorrencias.R
 import com.maisageis.ocorrencias.repository.LoginRepository
-import com.maisageis.ocorrencias.ui.login.LoginViewModel
 import com.maisageis.ocorrencias.util.LoadPage
 
 class MainFragment : Fragment() {

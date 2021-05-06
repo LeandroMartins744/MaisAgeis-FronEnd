@@ -1,6 +1,6 @@
 package com.maisageis.ocorrencias.data
 
-import com.maisageis.ocorrencias.data.util.Endpoint
+import com.maisageis.ocorrencias.data.util.ApiService
 import com.maisageis.ocorrencias.data.util.RetrofitInitializer
 import com.maisageis.ocorrencias.data.util.ReturnData
 import com.maisageis.ocorrencias.model.ErrorResponse
@@ -12,7 +12,7 @@ import retrofit2.Response
 
 class GetLocationData(){
     fun Location(latitude: String, longetitude: String, returnData: ReturnData){
-        val request = RetrofitInitializer.buildService(Endpoint::class.java)
+        val request = RetrofitInitializer.buildService(ApiService::class.java)
         val call = request.geoLocation(latitude, longetitude)
 
         call.enqueue(object : Callback<DataResult> {
