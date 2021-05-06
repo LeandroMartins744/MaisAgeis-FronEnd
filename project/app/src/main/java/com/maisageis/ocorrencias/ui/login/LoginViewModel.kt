@@ -8,8 +8,12 @@ import com.maisageis.ocorrencias.model.ErrorResponse
 import com.maisageis.ocorrencias.model.UserModel
 import com.maisageis.ocorrencias.model.response.UserResponse
 
-class LoginViewModel:ViewModel(), ReturnData{
-    val user = MutableLiveData<UserResponse>()
+class LoginViewModel() : ViewModel(){
+
+}
+
+//, ReturnData{
+   /* val user = MutableLiveData<UserResponse>()
     val erro = MutableLiveData<ErrorResponse>()
     val loadPage = MutableLiveData<Boolean>().apply { value = false }
 
@@ -37,3 +41,5 @@ class LoginViewModel:ViewModel(), ReturnData{
         this.setLoadPage(true)
     }
 }
+
+    */

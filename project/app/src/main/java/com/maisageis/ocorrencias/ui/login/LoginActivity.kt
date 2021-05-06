@@ -11,9 +11,12 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textview.MaterialTextView
 import com.maisageis.ocorrencias.MainActivity
 import com.maisageis.ocorrencias.R
+import com.maisageis.ocorrencias.di.ComponentB
 import com.maisageis.ocorrencias.ui.cadastro.CadastroActivity
 import com.maisageis.ocorrencias.util.LoadPage
 import com.maisageis.ocorrencias.util.ShowAlert
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
 
@@ -23,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var btnLogin: Button
     private lateinit var loadPage: View
 
-    lateinit var loginViewModel: LoginViewModel
+    private val loginViewModel: LoginViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,19 +42,19 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this@LoginActivity, CadastroActivity::class.java))
         }
 
-        loginViewModel.user.observe(this, Observer {
-            if (it == null)
-                ShowAlert(this@LoginActivity, getString(R.string.loginInvalido))
-            else {
-                val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-        })
+//        loginViewModel.user.observe(this, Observer {
+//            if (it == null)
+//                ShowAlert(this@LoginActivity, getString(R.string.loginInvalido))
+//            else {
+//                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+//                startActivity(intent)
+//                finish()
+//            }
+//        })
 
-        btnLogin.setOnClickListener {
-            loginViewModel.loadData(txtLogin.text.toString(), txtSenha.text.toString())
-        }
+//        btnLogin.setOnClickListener {
+//            loginViewModel.loadData(txtLogin.text.toString(), txtSenha.text.toString())
+//        }
     }
 
     private fun initViews() {
@@ -61,12 +64,12 @@ class LoginActivity : AppCompatActivity() {
         txtSenha = findViewById(R.id.txtSenha)
         btnLogin = findViewById(R.id.btnLoginLogar)
 
-        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+      //  loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
     }
 
     private fun loadingPage() {
-        loginViewModel.loadPage.observe(this, Observer {
-            LoadPage(loadPage, getString(R.string.carregando), it)
-        })
+//        loginViewModel.loadPage.observe(this, Observer {
+//            LoadPage(loadPage, getString(R.string.carregando), it)
+//        })
     }
 }
