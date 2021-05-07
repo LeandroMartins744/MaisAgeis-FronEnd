@@ -1,4 +1,4 @@
-    package com.maisageis.ocorrencias.ui.login
+package com.maisageis.ocorrencias.ui.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,15 +7,18 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textview.MaterialTextView
 import com.maisageis.ocorrencias.MainActivity
 import com.maisageis.ocorrencias.R
+import com.maisageis.ocorrencias.model.ErrorResponse
+import com.maisageis.ocorrencias.model.UserModel
+import com.maisageis.ocorrencias.model.response.UserResponse
 import com.maisageis.ocorrencias.ui.cadastro.CadastroActivity
+import com.maisageis.ocorrencias.util.LoadPage
+import com.maisageis.ocorrencias.util.ShowAlert
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import kotlin.reflect.KClass
 
-    class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     private lateinit var labelCadastro: MaterialTextView
     private lateinit var txtLogin: TextView
@@ -23,7 +26,7 @@ import kotlin.reflect.KClass
     private lateinit var btnLogin: Button
     private lateinit var loadPage: View
 
-    private var loginViewModel: LoginViewModel by viewModel()
+    private val loginViewModel: LoginViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,40 +34,37 @@ import kotlin.reflect.KClass
 
         initViews()
         initOnClicks()
-        loadingPage()
-       // setObservable()
-        //loginViewModel.loginUser("teste@teste.com", "123456")
+        setObservable()
     }
 
-   /* private fun setObservable() =
-        loginViewModel.actionView.observe(this, Observer { state ->
-            when(state){
-                is LoginViewAction.Success ->{ }
-                is LoginViewAction.Error -> { }
-                is LoginViewAction.Loading -> { }
-            }
-        })
-
-    */
+     private fun setObservable() =
+         loginViewModel.actionView.observe(this, Observer { state ->
+             when(state){
+                 is LoginViewAction.Success -> this.successLogin(state.item)
+                 is LoginViewAction.Error -> this.errorLogin(state.item)
+                 is LoginViewAction.Loading -> loadingPage(state.loading)
+             }
+         })
 
     private fun initOnClicks() {
         labelCadastro.setOnClickListener {
             startActivity(Intent(this@LoginActivity, CadastroActivity::class.java))
         }
 
-      /*  loginViewModel.user.observe(this, Observer {
-            if (it == null)
-                ShowAlert(this@LoginActivity, getString(R.string.loginInvalido))
-            else {
-                val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-        })*/
-
         btnLogin.setOnClickListener {
-          //  loginViewModel.loadData(txtLogin.text.toString(), txtSenha.text.toString())
+            loginViewModel.loginUser(txtLogin.text.toString(), txtSenha.text.toString())
         }
+    }
+
+    private fun successLogin(user: UserResponse) {
+        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun errorLogin(ex: ErrorResponse){
+        loadingPage(false)
+        ShowAlert(this@LoginActivity, getString(R.string.loginInvalido))
     }
 
     private fun initViews() {
@@ -73,13 +73,9 @@ import kotlin.reflect.KClass
         txtLogin = findViewById(R.id.txtEmail)
         txtSenha = findViewById(R.id.txtSenha)
         btnLogin = findViewById(R.id.btnLoginLogar)
-
-      //  loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
     }
 
-    private fun loadingPage() {
-        //loginViewModel.loadPage.observe(this, Observer {
-       //     LoadPage(loadPage, getString(R.string.carregando), it)
-        //})
+    private fun loadingPage(visible: Boolean) {
+        LoadPage(loadPage, getString(R.string.carregando), visible)
     }
 }

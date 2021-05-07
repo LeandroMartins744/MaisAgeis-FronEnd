@@ -5,8 +5,10 @@ import android.os.Build
 import com.google.gson.GsonBuilder
 import com.maisageis.ocorrencias.data.util.*
 import com.maisageis.ocorrencias.repository.LoginRepository
+import com.maisageis.ocorrencias.ui.login.LoginViewModel
 import okhttp3.OkHttpClient
 import org.koin.android.BuildConfig
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -30,13 +32,18 @@ private fun provideApiService(retrofit: Retrofit): ApiService = retrofit.create(
 
 val appModule = module() {
     single { providerRetrofit() }
-    single { ApiHelperImpl(get())}
+    single<ApiHelper> { ApiHelperImpl()}
     single { provideApiService(get()) }
 }
-   /* single { provideOkHttpClient() }
-    single { provideRetrofit(get(), BuildConfig.BASE_URL) }
-    single { provideApiService(get()) }
-    single { provideNetworkHelper(androidContext()) }
 
-    */
-//}
+val repoModule = module {
+    single {
+        LoginRepository(get())
+    }
+}
+
+val viewModelModule = module {
+    viewModel {
+        LoginViewModel(get())
+    }
+}

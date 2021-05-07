@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-object RetrofitInitializer {
+object RetrofitInitializer  {
 
     private val client = OkHttpClient.Builder()
             .addInterceptor(BasicAuthInterceptor("maisageis", "123@"))
@@ -23,6 +23,11 @@ object RetrofitInitializer {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
 
+    fun getRetrofit(): ApiService {
+        return retrofit.create(ApiService::class.java)
+    }
+
+
     /*private fun providerRetrofit() = Retrofit.Builder()
             .baseUrl("http://www.maisageis.kinghost.net/")
             .client(client)
@@ -32,4 +37,6 @@ object RetrofitInitializer {
     fun<T> buildService(service: Class<T>): T {
         return retrofit.create(service)
     }
+
+    val apiService: ApiService = retrofit.create(ApiService::class.java)
 }
