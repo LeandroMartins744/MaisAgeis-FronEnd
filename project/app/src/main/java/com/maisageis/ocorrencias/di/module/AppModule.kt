@@ -6,8 +6,11 @@ import com.google.gson.GsonBuilder
 import com.maisageis.ocorrencias.data.util.*
 import com.maisageis.ocorrencias.repository.LoginRepository
 import com.maisageis.ocorrencias.ui.login.LoginViewModel
+import com.maisageis.ocorrencias.util.Security
+import com.maisageis.ocorrencias.util.SecurityData
 import okhttp3.OkHttpClient
 import org.koin.android.BuildConfig
+import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -37,9 +40,9 @@ val appModule = module() {
 }
 
 val repoModule = module {
-    single {
-        LoginRepository(get())
-    }
+    single { LoginRepository(get()) }
+    single { Security(androidApplication()) }
+    single { SecurityData(get()) }
 }
 
 val viewModelModule = module {

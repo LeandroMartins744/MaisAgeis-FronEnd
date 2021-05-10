@@ -34,22 +34,24 @@
         <activity
             android:name=".ui.slider.SliderActivity"
             android:theme="@style/Theme.Design.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
-            android:name=".ui.cadastro.CadastroActivity"
+            android:name=".ui.register.RegisterActivity"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
             android:name=".ui.splash.SplashActivity"
-            android:theme="@style/Theme.Design.NoActionBar"></activity>
-        <activity android:name=".MainActivity"></activity>
+            android:theme="@style/Theme.Design.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity" ></activity>
     </application>
 
 </manifest>

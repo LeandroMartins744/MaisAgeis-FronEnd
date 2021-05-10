@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="30dp"
     android:background="@drawable/splashocorrencia"
-    tools:context=".ui.cadastro.CadastroActivity">
+    tools:context=".ui.register.RegisterActivity">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tituloCadastro"

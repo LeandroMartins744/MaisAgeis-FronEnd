@@ -1,13 +1,21 @@
-package com.maisageis.ocorrencias.ui.cadastro
+package com.maisageis.ocorrencias.ui.register
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.maisageis.ocorrencias.R
 
-class CadastroActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var btnCadastrar: Button
+    private lateinit var btnRegister: Button
+
+    companion object {
+        fun newInstance(context: Context): Intent {
+            return Intent(context, RegisterActivity::class.java)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,12 +26,12 @@ class CadastroActivity : AppCompatActivity() {
     }
 
     private fun initSetOnClicks() {
-        btnCadastrar.setOnClickListener {
+        btnRegister.setOnClickListener {
             onBackPressed()
         }
     }
 
     private fun initViews() {
-        btnCadastrar = findViewById(R.id.btnCadastrar)
+        btnRegister = findViewById(R.id.btnCadastrar)
     }
 }

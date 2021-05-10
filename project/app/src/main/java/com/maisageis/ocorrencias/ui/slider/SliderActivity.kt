@@ -1,5 +1,6 @@
 package com.maisageis.ocorrencias.ui.slider
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,6 +17,12 @@ class SliderActivity : AppCompatActivity() {
     private lateinit var closeSlider: FloatingActionButton
     private lateinit var imageList: ArrayList<SlideModel>
 
+    companion object {
+        fun newInstance(context: Context): Intent {
+            return Intent(context, SliderActivity::class.java)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_slider)
@@ -28,7 +35,7 @@ class SliderActivity : AppCompatActivity() {
     }
 
     private fun loadImageSlider(){
-        imageList = ArrayList<SlideModel>()
+        imageList = ArrayList()
 
         imageList.add(SlideModel("https://bit.ly/2YoJ77H"))
         imageList.add(SlideModel("https://bit.ly/2BteuF2"))
@@ -37,8 +44,7 @@ class SliderActivity : AppCompatActivity() {
 
     private fun initSetClicks() {
         closeSlider.setOnClickListener {
-            val intent = Intent(this@SliderActivity, MainActivity::class.java)
-            startActivity(intent)
+            startActivity(MainActivity.newInstance(this))
             finish()
         }
     }

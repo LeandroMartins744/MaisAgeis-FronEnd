@@ -1,5 +1,6 @@
 package com.maisageis.ocorrencias.ui.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -8,12 +9,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.google.android.material.textview.MaterialTextView
-import com.maisageis.ocorrencias.MainActivity
 import com.maisageis.ocorrencias.R
 import com.maisageis.ocorrencias.model.ErrorResponse
-import com.maisageis.ocorrencias.model.UserModel
 import com.maisageis.ocorrencias.model.response.UserResponse
-import com.maisageis.ocorrencias.ui.cadastro.CadastroActivity
+import com.maisageis.ocorrencias.ui.register.RegisterActivity
+import com.maisageis.ocorrencias.ui.slider.SliderActivity
 import com.maisageis.ocorrencias.util.LoadPage
 import com.maisageis.ocorrencias.util.ShowAlert
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -37,6 +37,12 @@ class LoginActivity : AppCompatActivity() {
         setObservable()
     }
 
+    companion object {
+        fun newInstance(context: Context): Intent {
+            return Intent(context, LoginActivity::class.java)
+        }
+    }
+
      private fun setObservable() =
          loginViewModel.actionView.observe(this, Observer { state ->
              when(state){
@@ -48,7 +54,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initOnClicks() {
         labelCadastro.setOnClickListener {
-            startActivity(Intent(this@LoginActivity, CadastroActivity::class.java))
+            startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
         }
 
         btnLogin.setOnClickListener {
@@ -57,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun successLogin(user: UserResponse) {
-        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+        val intent = Intent(this@LoginActivity, SliderActivity::class.java)
         startActivity(intent)
         finish()
     }

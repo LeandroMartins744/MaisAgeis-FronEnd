@@ -43,8 +43,6 @@ class MainFragment : Fragment() {
         initOnClicks()
         loadingPage()
         mainPage.visibility = View.VISIBLE
-
-       // viewModel.loadData(latitude.text.toString(), longetude.text.toString())
     }
 
     private fun initViews() {
