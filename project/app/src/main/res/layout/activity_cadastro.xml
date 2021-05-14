@@ -35,7 +35,7 @@
             android:id="@+id/txtSenha1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Digite seu Email"
+            android:hint="Digite seu nome completo"
             android:inputType="textWebEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,7 +69,7 @@
             android:id="@+id/txtSenha3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Digite seu Email"
+            android:hint="Digite novamente seu Email"
             android:inputType="textWebEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -86,7 +86,7 @@
             android:id="@+id/txtSenha4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Digite seu Email"
+            android:hint="Digite sua Senha"
             android:inputType="textWebEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
