@@ -3,14 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splashocorrencia"
+    android:background="@drawable/black"
     android:orientation="vertical"
+    android:paddingLeft="15pt"
+    android:paddingRight="15pt"
     tools:context=".ui.login.LoginActivity">
 
     <include
         android:id="@+id/loginProgressBar"
-        android:visibility="gone"
-        layout="@layout/load_page"/>
+        layout="@layout/load_page"
+        android:visibility="gone" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="250dp"

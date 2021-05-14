@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/black"
     android:layout_height="match_parent">
 
 
@@ -24,6 +25,7 @@
         android:layout_width="248dp"
         android:layout_height="60dp"
         android:text="Buscar Local"
+        app:backgroundTint="@color/colorSecondaryLight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -37,6 +39,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
         android:text="Arredores"
+        app:backgroundTint="@color/colorSecondaryLight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2" />
@@ -45,12 +48,15 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginBottom="36dp"
-        android:text="Olá, "
+        android:layout_marginBottom="24dp"
+        android:background="#004F5B62"
+        android:padding="20px"
+        android:text="Olá, Lucas"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#352222"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/appCompatImageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.379"
         app:layout_constraintStart_toStartOf="parent" />
 
 

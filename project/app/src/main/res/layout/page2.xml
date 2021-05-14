@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/black"
     android:layout_height="match_parent">
 
 
@@ -13,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="116dp"
         android:text="Insira o endereço:"
+        android:textColor="#FFFFFF"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -26,6 +28,8 @@
         android:layout_marginTop="92dp"
         android:hint="CEP"
         android:inputType="textWebEmailAddress"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -37,6 +41,8 @@
         android:layout_marginTop="172dp"
         android:hint="Rua"
         android:inputType="textWebEmailAddress"
+        android:textColor="#FFFFFF"
+        android:textColorHint="@color/background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +55,9 @@
         android:layout_marginTop="252dp"
         android:hint="Bairro"
         android:inputType="textWebEmailAddress"
+        android:textColor="@color/background"
+        android:textColorHighlight="#A81919"
+        android:textColorHint="#FBF6F6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,6 +70,7 @@
         android:layout_marginTop="369dp"
         android:layout_marginBottom="152dp"
         android:text="Buscar"
+        app:backgroundTint="@color/colorSecondaryLight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
