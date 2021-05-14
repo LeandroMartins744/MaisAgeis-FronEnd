@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="30dp"
-    android:background="@drawable/splashocorrencia"
-    tools:context=".ui.register.RegisterActivity">
+    android:background="@drawable/black"
+    tools:context=".ui.cadastro.CadastroActivity">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tituloCadastro"
@@ -24,36 +24,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/lblSenha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloCadastro">
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/txtSenha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Digite seu Email"
-            android:inputType="textWebEmailAddress" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/lblSenha1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblSenha">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.208">
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/txtSenha1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Digite seu Email"
+            android:hint="Digite seu nome"
             android:inputType="textWebEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,7 +71,7 @@
             android:id="@+id/txtSenha3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Digite seu Email"
+            android:hint="Digite novamente seu Email"
             android:inputType="textWebEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,7 +88,7 @@
             android:id="@+id/txtSenha4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Digite seu Email"
+            android:hint="Digite sua Senha"
             android:inputType="textWebEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,7 +97,7 @@
         style="@style/TextAppearance.AppCompat.Widget.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cadastarr"
+        android:text="Cadastrar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
