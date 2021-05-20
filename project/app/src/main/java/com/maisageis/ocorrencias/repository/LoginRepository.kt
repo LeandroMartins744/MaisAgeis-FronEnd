@@ -16,22 +16,8 @@ class LoginRepository(private val apiHelper: ApiHelper) {
             onError(ErrorResponse(message = ""))
         }
     }
-
-    suspend fun getUser2(login: String, pass: String){
-            apiHelper.getUsers2(login, pass).let { return@let it}
-              //  return it
-            //}
-    }
-
-    suspend fun getUser3(login: String, pass: String) = RetrofitInitializer.getRetrofit().getLoginNew2(login, pass)
-    suspend fun getUserTest(login: String, pass: String): Result<java.lang.Exception, UserResponse>{
-        apiHelper.getUsers2("teste@teste.com", "123456").let {
-            var teste = it
-            return Result.Success(UserResponse(1, "", "", "", "", true))
-        }
-    }
 }
-
+/*
 sealed class Result<out L, out R> {
     data class Success<out R>(val dataSuccess: R) : Result<Nothing, R>()
     data class Error<out L>(val dataError: L) : Result<L, Nothing>()
@@ -58,3 +44,5 @@ fun<T, L, R> Result<L, R>.flatMap(fn: (R) -> Result<L, T>): Result<L, T> =
     }
 
 fun<T, L, R> Result<L, R>.map(fn: (R) -> (T)): Result<L, T> = this.flatMap(fn.c(::makeSuccess))
+
+ */

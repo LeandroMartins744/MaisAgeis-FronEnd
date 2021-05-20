@@ -20,9 +20,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var labelCadastro: MaterialTextView
+    private lateinit var lxlInsert: MaterialTextView
     private lateinit var txtLogin: TextView
-    private lateinit var txtSenha: TextView
+    private lateinit var txtPassword: TextView
     private lateinit var btnLogin: Button
     private lateinit var loadPage: View
 
@@ -53,12 +53,12 @@ class LoginActivity : AppCompatActivity() {
          })
 
     private fun initOnClicks() {
-        labelCadastro.setOnClickListener {
+        lxlInsert.setOnClickListener {
             startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
         }
 
         btnLogin.setOnClickListener {
-            loginViewModel.loginUser(txtLogin.text.toString(), txtSenha.text.toString())
+            loginViewModel.loginUser(txtLogin.text.toString(), txtPassword.text.toString())
         }
     }
 
@@ -75,9 +75,9 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initViews() {
         loadPage = findViewById(R.id.loginProgressBar)
-        labelCadastro = findViewById(R.id.lblCadastro)
+        lxlInsert = findViewById(R.id.lblCadastro)
         txtLogin = findViewById(R.id.txtEmail)
-        txtSenha = findViewById(R.id.txtSenha)
+        txtPassword = findViewById(R.id.txtSenha)
         btnLogin = findViewById(R.id.btnLoginLogar)
     }
 

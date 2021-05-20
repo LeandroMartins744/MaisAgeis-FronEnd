@@ -4,12 +4,47 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.TextView
+import androidx.lifecycle.Observer
 import com.maisageis.ocorrencias.R
+import com.maisageis.ocorrencias.model.ErrorResponse
+import com.maisageis.ocorrencias.model.request.UserRequest
+import com.maisageis.ocorrencias.model.response.StreetCepResponse
+import com.maisageis.ocorrencias.model.response.UserResponse
+import com.maisageis.ocorrencias.ui.login.LoginActivity
+import com.maisageis.ocorrencias.util.LoadPage
+import com.maisageis.ocorrencias.util.ShowAlert
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var btnRegister: Button
+    private lateinit var loadPage: View
+
+    private lateinit var txtNome: EditText
+    private lateinit var txtApelido: EditText
+    private lateinit var txtEmail: EditText
+    private lateinit var txtNovaSenha: EditText
+    private lateinit var txtConfirmacao: EditText
+    private lateinit var txtCep: EditText
+    private lateinit var txtLogradouro: EditText
+    private lateinit var txtNumero: EditText
+    private lateinit var txtComplemento: EditText
+    private lateinit var txtBairro: EditText
+    private lateinit var txtCidade: EditText
+    private lateinit var txtUF: EditText
+
+    private lateinit var btnBuscarCep: Button
+    private lateinit var btnGravar: Button
+    private lateinit var btnTerm: TextView
+    private lateinit var btnLoginBack: TextView
+
+    private lateinit var termsContract: CheckBox
+
+    private val registerActivity: RegisterViewModel by viewModel()
 
     companion object {
         fun newInstance(context: Context): Intent {
@@ -19,19 +54,148 @@ class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_cadastro)
+        setContentView(R.layout.activity_register)
 
         initViews()
         initSetOnClicks()
+        setObservable()
     }
 
     private fun initSetOnClicks() {
-        btnRegister.setOnClickListener {
-            onBackPressed()
+        btnBuscarCep.setOnClickListener {
+            registerActivity.cepSearch(txtCep.text.toString())
+        }
+
+        btnGravar.setOnClickListener {
+            if(validTerms()) {
+                if (validInputs()) {
+                    if (validPassword())
+                        registerActivity.register(createRequest())
+                    else
+                        ShowAlert(this@RegisterActivity, "Senha deve conter pelo menos 6 digitos!")
+                } else
+                    ShowAlert(this@RegisterActivity, "Por favor, preenchar todos os campos")
+            }
+            else
+                ShowAlert(this@RegisterActivity, "Necessário aceitar os termos")
+        }
+
+        btnTerm.setOnClickListener {
+            startActivity(TermsActivity.newInstance(this))
+        }
+
+        btnLoginBack.setOnClickListener {
+            startActivity(LoginActivity.newInstance(this))
+            finish()
         }
     }
 
+    private fun validTerms(): Boolean = termsContract.isChecked
+
+    private fun createRequest() = UserRequest(
+        txtApelido.text.toString(),
+        txtNome.text.toString(),
+        txtNome.text.toString(),
+        "",
+        txtEmail.text.toString(),
+        txtNovaSenha.text.toString(),
+        txtLogradouro.text.toString(),
+        txtNumero.text.toString(),
+        txtComplemento.text.toString(),
+        txtBairro.text.toString(),
+        txtCidade.text.toString(),
+        txtUF.text.toString(),
+        "",
+        ""
+    )
+
+    private fun validPassword() = txtNovaSenha.text.toString() == txtConfirmacao.text.toString()
+
+    private fun validInputs(): Boolean {
+        return (
+            !txtNome.text.isNullOrEmpty() &&
+            !txtApelido.text.isNullOrEmpty() &&
+            !txtEmail.text.isNullOrEmpty() &&
+            !txtNovaSenha.text.isNullOrEmpty() &&
+            !txtConfirmacao.text.isNullOrEmpty() &&
+            !txtCep.text.isNullOrEmpty() &&
+            !txtLogradouro.text.isNullOrEmpty() &&
+            !txtNumero.text.isNullOrEmpty() &&
+            !txtBairro.text.isNullOrEmpty() &&
+            !txtNome.text.isNullOrEmpty() &&
+            !txtBairro.text.isNullOrEmpty() &&
+            !txtUF.text.isNullOrEmpty()
+        )
+    }
+
     private fun initViews() {
-        btnRegister = findViewById(R.id.btnCadastrar)
+        loadPage = findViewById(R.id.registerProgressBar)
+
+        txtNome = findViewById(R.id.edtNome)
+        txtApelido = findViewById(R.id.edtCpf)
+        txtEmail = findViewById(R.id.edtEmail)
+        txtNovaSenha = findViewById(R.id.edtNovaSenha)
+        txtConfirmacao = findViewById(R.id.edtConfirmacao)
+        txtCep = findViewById(R.id.edtCep)
+        txtLogradouro = findViewById(R.id.edtLogradouro)
+        txtNumero = findViewById(R.id.edtNumero)
+        txtComplemento = findViewById(R.id.edtComplemento)
+        txtBairro = findViewById(R.id.edtBairro)
+        txtCidade = findViewById(R.id.edCidade)
+        txtUF = findViewById(R.id.edtUF)
+
+        btnBuscarCep = findViewById(R.id.btnBuscarCep)
+        btnGravar = findViewById(R.id.btnGravar)
+        btnTerm = findViewById(R.id.lblContrato)
+        btnLoginBack = findViewById(R.id.lblLogin)
+
+        termsContract = findViewById(R.id.chkTermsContract)
+    }
+
+    private fun setObservable() {
+        registerActivity.actionCepSearchView.observe(this, Observer { state ->
+            when(state){
+                is SearchCepViewAction.Success -> this.successCepSearch(state.item)
+                is SearchCepViewAction.Error -> this.errorCepSearch(state.item)
+                is SearchCepViewAction.Loading -> loadingPage(state.loading)
+            }
+        })
+
+        registerActivity.actionView.observe(this, Observer { state ->
+            when(state){
+                is RegisterViewAction.Success -> this.success(state.item)
+                is RegisterViewAction.Error -> this.error(state.item)
+                is RegisterViewAction.Loading -> loadingPage(state.loading)
+            }
+        })
+    }
+
+    private fun success(value: UserResponse){
+        ShowAlert(this@RegisterActivity, "Cadastro efetuado com sucesso!!!")
+        loadingPage(false)
+    }
+
+    private fun error(value: ErrorResponse){
+        loadingPage(false)
+        ShowAlert(this@RegisterActivity, "Falha ao efetuar o cadastro, tente novamente mais tarde!")
+    }
+
+    private fun successCepSearch(value: StreetCepResponse){
+        txtLogradouro.setText(value.street)
+        txtComplemento.setText(value.complement)
+        txtBairro.setText(value.district)
+        txtCidade.setText(value.city)
+        txtUF.setText(value.state)
+        loadingPage(false)
+    }
+
+    private fun errorCepSearch(value: ErrorResponse){
+        loadingPage(false)
+        ShowAlert(this@RegisterActivity, "Cep não encontrado...")
+    }
+
+    private fun loadingPage(visible: Boolean) {
+        LoadPage(loadPage, getString(R.string.carregando), visible)
     }
 }
+
