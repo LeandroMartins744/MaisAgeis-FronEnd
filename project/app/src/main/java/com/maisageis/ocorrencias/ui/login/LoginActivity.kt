@@ -58,7 +58,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btnLogin.setOnClickListener {
-            loginViewModel.loginUser(txtLogin.text.toString(), txtSenha.text.toString())
+//            loginViewModel.loginUser(txtLogin.text.toString(), txtSenha.text.toString())
+            successLogin(user = UserResponse(123, "qualquercoisa", "qualquercoisa", "qualquercoisa","qualquercoisa", true) )
         }
     }
 
