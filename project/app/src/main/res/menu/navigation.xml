@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigation_songs"
-        android:icon="@drawable/ic_slider_close"
-        android:title="Songs"/>
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_botton_home"
+        android:title="Home"/>
 
     <item
-        android:id="@+id/navigation_albums"
-        android:icon="@drawable/ic_slider_close"
-        android:title="Albums"/>
+        android:id="@+id/navigation_maps"
+        android:icon="@drawable/ic_botton_location"
+        android:title="Mapa"/>
 
     <item
-        android:id="@+id/navigation_artists"
-        android:icon="@drawable/ic_slider_close"
-        android:title="Artists"/>
+        android:id="@+id/navigation_location"
+        android:icon="@drawable/ic_botton_search"
+        android:title="Local"/>
+
+    <item
+        android:id="@+id/navigation_user"
+        android:icon="@drawable/ic_botton_user"
+        android:title="Dados"/>
 </menu>

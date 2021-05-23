@@ -2,10 +2,10 @@ package com.maisageis.ocorrencias.ui.login
 
 import androidx.lifecycle.*
 import com.maisageis.ocorrencias.model.ErrorResponse
+import com.maisageis.ocorrencias.model.request.LoginRequest
 import com.maisageis.ocorrencias.model.response.UserResponse
-import com.maisageis.ocorrencias.repository.LoginRepository
+import com.maisageis.ocorrencias.repository.UserRepository
 import kotlinx.coroutines.*
-import java.lang.Exception
 
 sealed class LoginViewAction{
     open class Success(val item: UserResponse): LoginViewAction()
@@ -14,22 +14,22 @@ sealed class LoginViewAction{
 }
 
 class LoginViewModel(
-    private val loginRepository: LoginRepository
+    private val userRepository: UserRepository
 ): ViewModel() {
 
     private val _actionView by lazy { MutableLiveData<LoginViewAction>() }
     val actionView: LiveData<LoginViewAction> get() = _actionView
 
-    fun loginUser(login: String, pass: String) {
+    fun loginUser(value: LoginRequest) {
         _actionView.postValue(LoginViewAction.Loading(true))
         viewModelScope.launch(Dispatchers.IO) {
-            executeLogin(login, pass)
+            executeLogin(value)
         }
     }
 
-    private suspend fun executeLogin(login: String, pass: String) {
+    private suspend fun executeLogin(value: LoginRequest) {
         viewModelScope.async(Dispatchers.IO) {
-            return@async loginRepository.getUsers(login, pass, ::showSuccess, ::showError)
+            return@async userRepository.loginUser(value, ::showSuccess, ::showError)
         }.await()
     }
 

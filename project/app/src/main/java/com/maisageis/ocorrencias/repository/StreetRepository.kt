@@ -1,16 +1,11 @@
 package com.maisageis.ocorrencias.repository
 
 import com.maisageis.ocorrencias.data.street.StreetApi
-import com.maisageis.ocorrencias.data.util.ApiHelper
-import com.maisageis.ocorrencias.data.util.RetrofitInitializer
 import com.maisageis.ocorrencias.model.ErrorResponse
-import com.maisageis.ocorrencias.model.UserModel
 import com.maisageis.ocorrencias.model.request.StreetCepRequest
 import com.maisageis.ocorrencias.model.request.StreetRequest
 import com.maisageis.ocorrencias.model.response.StreetCepResponse
 import com.maisageis.ocorrencias.model.response.StreetResponse
-import com.maisageis.ocorrencias.model.response.UserResponse
-import java.lang.reflect.Executable
 
 class StreetRepository(private val streetApi: StreetApi) {
 

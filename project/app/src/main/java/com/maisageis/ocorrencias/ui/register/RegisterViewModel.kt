@@ -9,10 +9,8 @@ import com.maisageis.ocorrencias.model.request.StreetCepRequest
 import com.maisageis.ocorrencias.model.request.UserRequest
 import com.maisageis.ocorrencias.model.response.StreetCepResponse
 import com.maisageis.ocorrencias.model.response.UserResponse
-import com.maisageis.ocorrencias.repository.LoginRepository
 import com.maisageis.ocorrencias.repository.StreetRepository
 import com.maisageis.ocorrencias.repository.UserRepository
-import com.maisageis.ocorrencias.ui.login.LoginViewAction
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch

@@ -1,22 +1,11 @@
 package com.maisageis.ocorrencias.ui.main
 
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.maisageis.ocorrencias.data.GetLocationData
 import com.maisageis.ocorrencias.data.util.ReturnData
 import com.maisageis.ocorrencias.model.ErrorResponse
-import com.maisageis.ocorrencias.model.UserModel
 import com.maisageis.ocorrencias.model.response.DataResult
-import com.maisageis.ocorrencias.model.response.UserResponse
-import com.maisageis.ocorrencias.repository.LoginRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 
 class MainViewModel(): ViewModel(), ReturnData {
     val data = MutableLiveData<DataResult>()

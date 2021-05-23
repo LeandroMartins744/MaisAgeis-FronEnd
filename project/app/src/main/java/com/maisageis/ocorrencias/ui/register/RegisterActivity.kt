@@ -18,6 +18,7 @@ import com.maisageis.ocorrencias.model.response.UserResponse
 import com.maisageis.ocorrencias.ui.login.LoginActivity
 import com.maisageis.ocorrencias.util.LoadPage
 import com.maisageis.ocorrencias.util.ShowAlert
+import com.maisageis.ocorrencias.util.ToastAlert
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterActivity : AppCompatActivity() {
@@ -44,7 +45,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var termsContract: CheckBox
 
-    private val registerActivity: RegisterViewModel by viewModel()
+    private val registerViewModel: RegisterViewModel by viewModel()
 
     companion object {
         fun newInstance(context: Context): Intent {
@@ -63,21 +64,21 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun initSetOnClicks() {
         btnBuscarCep.setOnClickListener {
-            registerActivity.cepSearch(txtCep.text.toString())
+            registerViewModel.cepSearch(txtCep.text.toString())
         }
 
         btnGravar.setOnClickListener {
             if(validTerms()) {
                 if (validInputs()) {
                     if (validPassword())
-                        registerActivity.register(createRequest())
+                        registerViewModel.register(createRequest())
                     else
-                        ShowAlert(this@RegisterActivity, "Senha deve conter pelo menos 6 digitos!")
+                        ToastAlert(this@RegisterActivity, "Senha deve conter pelo menos 6 digitos!")
                 } else
-                    ShowAlert(this@RegisterActivity, "Por favor, preenchar todos os campos")
+                    ToastAlert(this@RegisterActivity, "Por favor, preenchar todos os campos")
             }
             else
-                ShowAlert(this@RegisterActivity, "Necessário aceitar os termos")
+                ToastAlert(this@RegisterActivity, "Necessário aceitar os termos")
         }
 
         btnTerm.setOnClickListener {
@@ -153,7 +154,7 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun setObservable() {
-        registerActivity.actionCepSearchView.observe(this, Observer { state ->
+        registerViewModel.actionCepSearchView.observe(this, Observer { state ->
             when(state){
                 is SearchCepViewAction.Success -> this.successCepSearch(state.item)
                 is SearchCepViewAction.Error -> this.errorCepSearch(state.item)
@@ -161,7 +162,7 @@ class RegisterActivity : AppCompatActivity() {
             }
         })
 
-        registerActivity.actionView.observe(this, Observer { state ->
+        registerViewModel.actionView.observe(this, Observer { state ->
             when(state){
                 is RegisterViewAction.Success -> this.success(state.item)
                 is RegisterViewAction.Error -> this.error(state.item)
@@ -171,13 +172,16 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun success(value: UserResponse){
-        ShowAlert(this@RegisterActivity, "Cadastro efetuado com sucesso!!!")
+        ShowAlert(this@RegisterActivity, "Cadastro", "Cadastro efetuado com sucesso!!!",{
+            startActivity(LoginActivity.newInstance(this))
+            finish()
+        }, "success")
         loadingPage(false)
     }
 
     private fun error(value: ErrorResponse){
         loadingPage(false)
-        ShowAlert(this@RegisterActivity, "Falha ao efetuar o cadastro, tente novamente mais tarde!")
+        ToastAlert(this@RegisterActivity, "Falha ao efetuar o cadastro, tente novamente mais tarde!")
     }
 
     private fun successCepSearch(value: StreetCepResponse){
@@ -191,7 +195,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun errorCepSearch(value: ErrorResponse){
         loadingPage(false)
-        ShowAlert(this@RegisterActivity, "Cep não encontrado...")
+        ToastAlert(this@RegisterActivity, "Cep não encontrado...")
     }
 
     private fun loadingPage(visible: Boolean) {

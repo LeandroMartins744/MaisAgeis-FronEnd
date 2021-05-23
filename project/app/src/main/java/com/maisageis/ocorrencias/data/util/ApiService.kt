@@ -1,12 +1,10 @@
 package com.maisageis.ocorrencias.data.util
 
+import com.maisageis.ocorrencias.model.request.LoginRequest
 import com.maisageis.ocorrencias.model.request.StreetCepRequest
 import com.maisageis.ocorrencias.model.request.StreetRequest
 import com.maisageis.ocorrencias.model.request.UserRequest
-import com.maisageis.ocorrencias.model.response.DataResult
-import com.maisageis.ocorrencias.model.response.StreetCepResponse
-import com.maisageis.ocorrencias.model.response.StreetResponse
-import com.maisageis.ocorrencias.model.response.UserResponse
+import com.maisageis.ocorrencias.model.response.*
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
@@ -45,6 +43,14 @@ import retrofit2.http.*
 
     //User
     @POST("project/api/User")
-    fun postStreetGet(@Body value: UserRequest): Call<UserResponse>
+    fun postUser(@Body value: UserRequest): Call<UserResponse>
+
+    @POST("project/api/User/LoginUser")
+    fun getLogin(@Body value: LoginRequest): Call<UserResponse>
+
+
+    //BO Category
+    @GET("project/api/BOCategory")
+    fun geCategory(): Call<List<CategoryResponse>>
 
 }

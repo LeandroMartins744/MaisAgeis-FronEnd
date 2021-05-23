@@ -14,7 +14,7 @@ class SecurityData(private val security: Security){
     }
 
     fun setUser(value: UserResponse){
-        security.setValue(Gson().toJson(value), SecurityTypes.User.type)
+        security.setValue(SecurityTypes.User.type, Gson().toJson(value))
     }
 }
 

@@ -1,9 +1,7 @@
 package com.maisageis.ocorrencias
 
 import android.app.Application
-import com.maisageis.ocorrencias.di.module.appModule
-import com.maisageis.ocorrencias.di.module.repoModule
-import com.maisageis.ocorrencias.di.module.viewModelModule
+import com.maisageis.ocorrencias.di.module.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -12,7 +10,14 @@ class App: Application() {
         super.onCreate()
         startKoin {
             androidContext(this@App)
-            modules(listOf(appModule, repoModule, viewModelModule))
+            modules(
+                listOf(
+                    appModule,
+                    repoModule,
+                    viewModelLoginModule,
+                    viewModelRegisterModule,
+                    viewModelHomeModule)
+            )
         }
     }
 }
