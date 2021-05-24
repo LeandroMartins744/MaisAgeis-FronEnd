@@ -48,15 +48,14 @@
                         <androidx.cardview.widget.CardView
                             android:layout_width="150dp"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="10dp"
-                            android:background="@color/black"
-                            android:backgroundTint="@color/black"
-                            app:cardBackgroundColor="@color/black">
+                            android:layout_marginLeft="10dp">
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="sdhjfbhg " />
+                                android:layout_width="match_parent"
+                                android:layout_height="280dp"
+                                android:background="@drawable/furto"
+                                android:text="Furto "
+                                android:textSize="12pt" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
@@ -66,22 +65,10 @@
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="sdhjfbhg " />
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="150dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="10dp"
-                            android:background="@color/black"
-                            android:backgroundTint="@color/black"
-                            app:cardBackgroundColor="@color/black">
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="sdhjfbhg " />
+                                android:layout_height="280dp"
+                                android:background="@drawable/latrocicio"
+                                android:text="Latrocinio"
+                                android:textSize="12pt" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
@@ -91,22 +78,10 @@
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="sdhjfbhg " />
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="150dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="10dp"
-                            android:background="@color/black"
-                            android:backgroundTint="@color/black"
-                            app:cardBackgroundColor="@color/black">
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="sdhjfbhg " />
+                                android:layout_height="280dp"
+                                android:background="@drawable/roubo"
+                                android:text="Roubo "
+                                android:textSize="12pt" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
@@ -116,8 +91,37 @@
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="sdhjfbhg " />
+                                android:layout_height="280dp"
+                                android:background="@drawable/homisidiodoloso"
+                                android:text="Homisidio Doloso "
+                                android:textSize="12pt" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="150dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            >
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="280dp"
+                                android:background="@drawable/lesao"
+                                android:text="Lesão "
+                                android:textSize="12pt" />
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="150dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="280dp"
+                                android:background="@drawable/feminicidio"
+                                android:text="Feminicidio "
+                                android:textSize="12pt" />
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>
                 </HorizontalScrollView>

@@ -54,8 +54,9 @@ class Blank01Fragment : Fragment() {
     private fun loadImageSlider(){
         imageList = ArrayList<SlideModel>()
 
-        imageList.add(SlideModel("https://bit.ly/2BteuF2"))
-        imageList.add(SlideModel("https://bit.ly/3fLJf72"))
+        imageList.add(SlideModel("https://images.pexels.com/photos/532001/pexels-photo-532001.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"))
+        imageList.add(SlideModel("https://images.pexels.com/photos/3042058/pexels-photo-3042058.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"))
+        imageList.add(SlideModel("https://images.pexels.com/photos/1464230/pexels-photo-1464230.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"))
 
         imageSlider.setImageList(imageList)
     }
