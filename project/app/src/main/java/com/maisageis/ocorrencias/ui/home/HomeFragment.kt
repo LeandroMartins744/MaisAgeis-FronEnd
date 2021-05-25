@@ -25,6 +25,7 @@ import com.maisageis.ocorrencias.R
 import com.maisageis.ocorrencias.model.ErrorResponse
 import com.maisageis.ocorrencias.model.response.CategoryResponse
 import com.maisageis.ocorrencias.model.response.UserResponse
+import com.maisageis.ocorrencias.ui.detail.DetailFragment
 import com.maisageis.ocorrencias.ui.login.LoginViewAction
 import com.maisageis.ocorrencias.ui.login.LoginViewModel
 import com.maisageis.ocorrencias.ui.slider.SliderActivity
@@ -93,9 +94,13 @@ class HomeFragment : Fragment() {
         adapterNomes = AdapterCategoryHome(
             requireContext(),
             category
-        ) {item ->
+        )
+        { item ->
             var tese = item
-
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.container, DetailFragment.newInstance())
+            transaction.addToBackStack(null)
+            transaction.commit()
         }
         rvNomes.apply {
             adapter = adapterNomes

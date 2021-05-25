@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.maisageis.ocorrencias.ui.detail.DetailFragment
 import com.maisageis.ocorrencias.ui.home.HomeFragment
 import com.maisageis.ocorrencias.ui.location.LocationFragment
 import com.maisageis.ocorrencias.ui.maps.MapsFragment

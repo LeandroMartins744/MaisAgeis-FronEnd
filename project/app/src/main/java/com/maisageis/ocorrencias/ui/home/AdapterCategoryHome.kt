@@ -31,6 +31,7 @@ class AdapterCategoryHome(
         dfVH.title.setText(item.name)
         dfVH.total.setText(item.total.toString())
         dfVH.description.setText(item.reference)
+        //dfVH.const.background = item.image
 
     }
 

@@ -14,7 +14,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import androidx.camera.core.ImageCapture
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.maisageis.ocorrencias.R
@@ -75,33 +74,23 @@ class MyDataFragment : Fragment() {
         }
 
         imgMDImage.setOnClickListener {
-            val outputFileOptions = ImageCapture.OutputFileOptions.Builder(File(...)).build()
-            imageCapture.takePicture(outputFileOptions, cameraExecutor,
-                object : ImageCapture.OnImageSavedCallback {
-                    override fun onError(error: ImageCaptureException)
-                    {
-                        // insert your code here.
-                    }
-                    override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                        // insert your code here.
-                    }
-                })
+            selectImageClick()
         }
     }
 
     private fun initData() {
         userData = securityData.getUer()!!
 
-        txtMDName.setText(userData.name)
-        txtMDApelido.setText(userData.surname)
-        txtMDCpf.setText(userData.cpf)
-        txtMDCep.setText("00000-00")
-        txtMDStreet.setText(userData.street.street)
-        txtMDNumber.setText(userData.street.number)
-        txtMDComplement.setText(userData.street.complement)
-        txtMDDistintic.setText(userData.street.district)
-        txtMDCity.setText(userData.street.city)
-        txtMDState.setText(userData.street.state)
+//        txtMDName.setText(userData.name)
+//        txtMDApelido.setText(userData.surname)
+//        txtMDCpf.setText(userData.cpf)
+//        txtMDCep.setText("00000-00")
+//        txtMDStreet.setText(userData.street.street)
+//        txtMDNumber.setText(userData.street.number)
+//        txtMDComplement.setText(userData.street.complement)
+//        txtMDDistintic.setText(userData.street.district)
+//        txtMDCity.setText(userData.street.city)
+//        txtMDState.setText(userData.street.state)
     }
 
     private fun initViews() {
