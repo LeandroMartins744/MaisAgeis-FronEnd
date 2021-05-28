@@ -11,4 +11,5 @@ class Security(context: Context) {
 
     fun getValue(key: String) = this.preferences.getString(key, "")
     fun setValue(key: String, obj: String) = preferences.edit().putString(key, obj).commit()
+    fun deleteValue() = preferences.edit().clear().commit()
 }

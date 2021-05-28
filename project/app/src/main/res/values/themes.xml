@@ -14,4 +14,17 @@
         <item name="android:windowBackground">@color/white</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Button" parent="TextAppearance.AppCompat.Button">
+        <item name="backgroundColor">@color/secondaryColor</item>
+        <item name="android:background">@color/secondaryDarkColor</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
+    <style name="EditText" parent="Widget.Design.TextInputLayout">
+        <item name="backgroundColor">@drawable/edit_text</item>
+        <item name="android:background">@drawable/edit_text</item>
+        <item name="android:textColor">@color/colorTextView</item>
+        <item name="android:color">@color/colorTextView</item>
+    </style>
 </resources>

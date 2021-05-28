@@ -85,7 +85,10 @@ class LoginActivity : AppCompatActivity() {
 
     private fun errorLogin(ex: ErrorResponse){
         loadingPage(false)
-        ShowAlert(this@LoginActivity, "Login Usuário", getString(R.string.loginInvalido), {}, "error")
+        if(ex.code == 408)
+            ShowAlert(this@LoginActivity, "Login Usuário", getString(R.string.logindesativado), {}, "error")
+        else
+            ShowAlert(this@LoginActivity, "Login Usuário", getString(R.string.loginInvalido), {}, "error")
     }
 
     private fun initViews() {

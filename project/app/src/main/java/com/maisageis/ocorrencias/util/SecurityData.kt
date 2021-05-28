@@ -16,6 +16,10 @@ class SecurityData(private val security: Security){
     fun setUser(value: UserResponse){
         security.setValue(SecurityTypes.User.type, Gson().toJson(value))
     }
+
+    fun deleteValue(){
+        security.deleteValue()
+    }
 }
 
 enum class SecurityTypes(val type: String){

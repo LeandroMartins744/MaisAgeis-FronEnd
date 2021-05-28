@@ -18,8 +18,11 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.maisageis.ocorrencias.R
 import com.maisageis.ocorrencias.model.response.UserResponse
+import com.maisageis.ocorrencias.ui.login.LoginActivity
+import com.maisageis.ocorrencias.ui.slider.SliderActivity
 import com.maisageis.ocorrencias.util.SecurityData
 import com.maisageis.ocorrencias.util.SendUpdatePassword
+import com.maisageis.ocorrencias.util.ShowAlert
 import org.koin.android.ext.android.inject
 import java.lang.ref.WeakReference
 
@@ -40,6 +43,7 @@ class MyDataFragment : Fragment() {
     private lateinit var btnMDAlter: Button
     private lateinit var btnMDAlterPasssword: Button
     private lateinit var btnMDSearchCep: Button
+    private lateinit var btnMDLogoff: Button
 
     private lateinit var viewItem: View
     private val securityData: SecurityData by inject()
@@ -76,6 +80,15 @@ class MyDataFragment : Fragment() {
         imgMDImage.setOnClickListener {
             selectImageClick()
         }
+
+        btnMDLogoff.setOnClickListener {
+            securityData.deleteValue()
+            ShowAlert(requireContext(), "Sair App", getString(R.string.closeapp), {
+                val intent = Intent(requireContext(), LoginActivity::class.java)
+                startActivity(intent)
+                requireActivity().finish()
+            }, "success")
+        }
     }
 
     private fun initData() {
@@ -108,6 +121,7 @@ class MyDataFragment : Fragment() {
         btnMDAlter = viewItem.findViewById(R.id.btnMDAlter)
         btnMDAlterPasssword = viewItem.findViewById(R.id.btnMDAlterPasssword)
         btnMDSearchCep = viewItem.findViewById(R.id.btnMDSearchCep)
+        btnMDLogoff = viewItem.findViewById(R.id.btnMDLogoff)
     }
 
     companion object {

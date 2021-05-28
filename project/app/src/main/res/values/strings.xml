@@ -15,5 +15,7 @@
     <string name="digite_a_senha">Digite a Senha</string>
     <string name="carregando">Carregando</string>
     <string name="loginInvalido">Login ou senha inválidos</string>
+    <string name="logindesativado">Usuário aguardando confirmação de email</string>
+    <string name="closeapp">Você será redirecionado para a tela principal</string>
     <string name="shared_preferences_name">user_preferences</string>
 </resources>

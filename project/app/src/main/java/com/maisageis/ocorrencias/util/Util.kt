@@ -4,10 +4,15 @@ import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.view.animation.DecelerateInterpolator
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.ViewCompat
+import androidx.core.view.ViewPropertyAnimatorCompat
 import com.maisageis.ocorrencias.R
 
 fun ToastAlert(context: Context, message: String){
@@ -15,8 +20,17 @@ fun ToastAlert(context: Context, message: String){
 }
 
 fun ShowAlert(context: Context, titleDialog: String, messageDialog: String, onClick: (String) -> Unit, icon: String = ""){
+
     val messageBoxView = LayoutInflater.from(context).inflate(R.layout.custom_message, null)
+
+
     val messageBoxBuilder = AlertDialog.Builder(context).setView(messageBoxView)
+
+    var animFadeIn: Animation = AnimationUtils.loadAnimation(
+        context,
+        R.anim.fadein
+    )
+
     messageBoxBuilder.setCancelable(false)
 
     var title: TextView = messageBoxView.findViewById(R.id.txtPassTitle)
@@ -37,6 +51,9 @@ fun ShowAlert(context: Context, titleDialog: String, messageDialog: String, onCl
         messageBoxInstance.dismiss()
         onClick.invoke("")
     }
+
+    image.startAnimation(animFadeIn)
+    message.startAnimation(animFadeIn)
 }
 
 fun SendPassword(context: Context){
