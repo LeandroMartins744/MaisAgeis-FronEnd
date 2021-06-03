@@ -4,354 +4,377 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30dp"
+    android:background="@color/black"
     tools:context=".ui.register.RegisterActivity">
 
-    <include
+   <include
         android:id="@+id/registerProgressBar"
         android:visibility="gone"
         layout="@layout/load_page"/>
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.733"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".feature.updateuser.ui.UpdateUserFragment">
+        android:layout_height="match_parent">
 
-        <!-- Nome -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tiNome"
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_height="match_parent"
+            android:alpha="0.2"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/backtobak" />
+
+        <LinearLayout
+            android:padding="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtNome"
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center_horizontal"
+                app:srcCompat="@drawable/logo02" />
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Nome"
-                android:inputType="text"
-                android:maxLines="1"
-                android:text="" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.733"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:context=".feature.updateuser.ui.UpdateUserFragment">
 
-        <!-- Apelido -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tiCPF"
+                    <!-- Nome -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiNome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tiNome"
-            app:layout_constraintTop_toBottomOf="@+id/tiNome">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtNome"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Nome"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtCpf"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="CPF"
-                android:inputType="number|text"
-                android:maxLength="11"
-                android:maxLines="1"
-                android:text="" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    <!-- Apelido -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiCPF"
 
-        <!-- e-mail -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tiEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="@+id/tiCPF"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/tiCPF"
-            app:layout_constraintTop_toBottomOf="@+id/tiCPF">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tiNome"
+                        app:layout_constraintTop_toBottomOf="@+id/tiNome">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:text="" />
-        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtCpf"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="CPF"
+                            android:inputType="number|text"
+                            android:maxLength="11"
+                            android:maxLines="1"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- senha Nova -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tiNovaSenha"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            app:layout_constraintEnd_toStartOf="@+id/tiConfirmacaoSenha"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tiEmail">
+                    <!-- e-mail -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="@+id/tiCPF"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="@+id/tiCPF"
+                        app:layout_constraintTop_toBottomOf="@+id/tiCPF">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtNovaSenha"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:hint="Senha"
-                android:inputType="text|textPassword"
-                android:text="" />
-        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Email"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- confirmacao senha -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tiConfirmacaoSenha"
-            android:layout_width="170dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintRight_toRightOf="@+id/tiEmail"
-            app:layout_constraintStart_toStartOf="@+id/guideline4"
-            app:layout_constraintTop_toBottomOf="@+id/tiEmail">
+                    <!-- senha Nova -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiNovaSenha"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        app:layout_constraintEnd_toStartOf="@+id/tiConfirmacaoSenha"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tiEmail">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtConfirmacao"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:hint="Confirmação"
-                android:inputType="text|textPassword"
-                android:text="" />
-        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtNovaSenha"
+                            android:layout_width="170dp"
+                            android:layout_height="wrap_content"
+                            android:hint="Senha"
+                            android:inputType="text|textPassword"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <!--cep -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tiCep"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            app:layout_constraintEnd_toStartOf="@+id/btnBuscarCep"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tiNovaSenha">
+                    <!-- confirmacao senha -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiConfirmacaoSenha"
+                        android:layout_width="170dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintRight_toRightOf="@+id/tiEmail"
+                        app:layout_constraintStart_toStartOf="@+id/guideline4"
+                        app:layout_constraintTop_toBottomOf="@+id/tiEmail">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtCep"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Cep"
-                android:inputType="number"
-                android:maxLength="8"
-                android:text="" />
-        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtConfirmacao"
+                            android:layout_width="170dp"
+                            android:layout_height="wrap_content"
+                            android:hint="Confirmação"
+                            android:inputType="text|textPassword"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Buscar cep -->
-        <Button
-            android:id="@+id/btnBuscarCep"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Buscar"
-            android:textColorHint="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/tiNovaSenha" />
+                    <!--cep -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiCep"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        app:layout_constraintEnd_toStartOf="@+id/btnBuscarCep"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tiNovaSenha">
 
-        <!-- logradouro -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tiLogradouro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/btnBuscarCep"
-            app:layout_constraintTop_toBottomOf="@+id/btnBuscarCep">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtCep"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Cep"
+                            android:inputType="number"
+                            android:maxLength="8"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtLogradouro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Logradouro"
-                android:inputType="text"
-                android:maxLines="1"
-                android:text="" />
-        </com.google.android.material.textfield.TextInputLayout>
+                    <!-- Buscar cep -->
+                    <Button
+                        android:id="@+id/btnBuscarCep"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Buscar"
+                        style="@style/Button"
+                        android:textColorHint="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/guideline3"
+                        app:layout_constraintTop_toBottomOf="@+id/tiNovaSenha" />
+
+                    <!-- logradouro -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiLogradouro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/btnBuscarCep"
+                        app:layout_constraintTop_toBottomOf="@+id/btnBuscarCep">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtLogradouro"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Logradouro"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
-        <!-- complemento -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tlNumero"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tiLogradouro">
+                    <!-- complemento -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tlNumero"
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tiLogradouro">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtNumero"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:hint="Numero"
-                android:inputType="number|text"
-                android:text="" />
-        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtNumero"
+                            android:layout_width="140dp"
+                            android:layout_height="wrap_content"
+                            android:hint="Numero"
+                            android:inputType="number|text"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- bairro -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tiComplemento"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintRight_toRightOf="@+id/tlNumero"
-            app:layout_constraintStart_toEndOf="@+id/tlNumero"
-            app:layout_constraintTop_toBottomOf="@+id/tiLogradouro">
+                    <!-- bairro -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiComplemento"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintRight_toRightOf="@+id/tlNumero"
+                        app:layout_constraintStart_toEndOf="@+id/tlNumero"
+                        app:layout_constraintTop_toBottomOf="@+id/tiLogradouro">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtComplemento"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:hint="Complemento"
-                android:inputType="text"
-                android:text="" />
-        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtComplemento"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:hint="Complemento"
+                            android:inputType="text"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- localidade -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tiBairro"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tlNumero">
+                    <!-- localidade -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiBairro"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tlNumero">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtBairro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Bairro"
-                android:inputType="text"
-                android:text="" />
-        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtBairro"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Bairro"
+                            android:inputType="text"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Uf -->
+                    <!-- Uf -->
 
-        <!-- enviar dados -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tiUF"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/tiBairro">
+                    <!-- enviar dados -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiUF"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/guideline3"
+                        app:layout_constraintTop_toBottomOf="@+id/tiBairro">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtUF"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Estado"
-                android:inputType="text"
-                android:maxLength="2"
-                android:text="" />
-        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtUF"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Estado"
+                            android:inputType="text"
+                            android:maxLength="2"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <CheckBox
-            android:id="@+id/chkTermsContract"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:text="Aceito os Termos"
-            app:layout_constraintEnd_toStartOf="@+id/guideline4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+                    <CheckBox
+                        android:id="@+id/chkTermsContract"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:text="Aceito os Termos"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
-        <Button
-            android:id="@+id/btnGravar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:layout_marginTop="20dp"
-            android:hint="Enviar"
-            android:textColorHint="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chkTermsContract" />
+                    <Button
+                        android:id="@+id/btnGravar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Enviar"
+                        style="@style/Button"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/chkTermsContract" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.60" />
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.60" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            app:layout_constraintEnd_toStartOf="@+id/tiUF"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tiBairro">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        app:layout_constraintEnd_toStartOf="@+id/tiUF"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tiBairro">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edCidade"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Cidade" />
-        </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edCidade"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Cidade" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.50" />
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.50" />
 
-        <TextView
-            android:id="@+id/lblContrato"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:padding="10dp"
-            android:text="Ver Contrato"
-            android:textColor="#2196F3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/chkTermsContract"
-            app:layout_constraintTop_toBottomOf="@+id/tiUF" />
+                    <TextView
+                        android:id="@+id/lblContrato"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:padding="10dp"
+                        android:text="Ver Contrato"
+                        android:textColor="@color/colorPrimary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/chkTermsContract"
+                        app:layout_constraintTop_toBottomOf="@+id/tiUF" />
 
-        <TextView
-            android:id="@+id/lblLogin"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center|right"
-            android:padding="10dp"
-            android:text="Já tenho o cadastro"
+                    <TextView
+                        android:id="@+id/lblLogin"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|right"
+                        android:padding="10dp"
+                        android:text="Já tenho o cadastro"
+                        android:textColor="@color/colorPrimary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/btnGravar" />
 
-            android:textColor="#2196F3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnGravar" />
-
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
-
-
-
-
 </LinearLayout>

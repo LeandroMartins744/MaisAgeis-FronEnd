@@ -1,9 +1,6 @@
 package com.maisageis.ocorrencias.data.util
 
-import com.maisageis.ocorrencias.model.request.LoginRequest
-import com.maisageis.ocorrencias.model.request.StreetCepRequest
-import com.maisageis.ocorrencias.model.request.StreetRequest
-import com.maisageis.ocorrencias.model.request.UserRequest
+import com.maisageis.ocorrencias.model.request.*
 import com.maisageis.ocorrencias.model.response.*
 import retrofit2.Call
 import retrofit2.Response
@@ -52,5 +49,8 @@ import retrofit2.http.*
     //BO Category
     @GET("project/api/BOCategory")
     fun geCategory(): Call<List<CategoryResponse>>
+
+    @POST("project/api/BO/Category")
+    fun geDetails(@Body value: BORelRequest): Call<CoodResponse>
 
 }

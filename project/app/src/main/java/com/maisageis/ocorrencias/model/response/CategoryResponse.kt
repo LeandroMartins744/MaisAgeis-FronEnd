@@ -16,5 +16,8 @@ data class CategoryResponse(
     val image: String,
 
     @SerializedName("reference")
-    val reference: String
+    val reference: String,
+
+    @SerializedName("details")
+    val details: String
 )

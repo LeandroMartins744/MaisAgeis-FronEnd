@@ -3,28 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="150dp"
-    android:layout_height="225dp"
-    android:background="@drawable/card">
+    android:background="@drawable/card"
+    android:layout_height="225dp">
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:background="@drawable/background"-->
-<!--        android:orientation="vertical"-->
-<!--        android:padding="10dp"-->
-<!--        >-->
-<!--        -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:id="@+id/cardId"
-        android:background="@drawable/background"
-        android:padding="5dp"
+        android:padding="0dp"
         android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/cardImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bannerimg02"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.798"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/cardTitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:text="Roubo de Celular"
             android:textColor="@color/white"
             android:textSize="22sp"
@@ -37,6 +43,8 @@
             android:id="@+id/cardTotal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:gravity="right"
             android:text="35"
             android:textColor="@color/white"
@@ -50,6 +58,9 @@
             android:id="@+id/cardDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:gravity="right"
             android:text="Total de ocorrências"
             android:textColor="@color/white"
@@ -61,6 +72,6 @@
 
 
 
-    <!--    </LinearLayout>-->
+        <!--    </LinearLayout>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

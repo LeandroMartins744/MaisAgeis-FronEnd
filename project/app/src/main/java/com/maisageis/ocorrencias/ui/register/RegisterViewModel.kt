@@ -11,6 +11,7 @@ import com.maisageis.ocorrencias.model.response.StreetCepResponse
 import com.maisageis.ocorrencias.model.response.UserResponse
 import com.maisageis.ocorrencias.repository.StreetRepository
 import com.maisageis.ocorrencias.repository.UserRepository
+import com.maisageis.ocorrencias.ui.action.SearchCepViewAction
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -19,12 +20,6 @@ sealed class RegisterViewAction{
     open class Success(val item: UserResponse): RegisterViewAction()
     open class Loading(val loading: Boolean): RegisterViewAction()
     open class Error(val item: ErrorResponse): RegisterViewAction()
-}
-
-sealed class SearchCepViewAction{
-    open class Success(val item: StreetCepResponse): SearchCepViewAction()
-    open class Loading(val loading: Boolean): SearchCepViewAction()
-    open class Error(val item: ErrorResponse): SearchCepViewAction()
 }
 
 class RegisterViewModel(

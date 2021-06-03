@@ -22,35 +22,37 @@
                 android:layout_height="96dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:src="@drawable/background"
                 app:civ_border_color="#FF000000"
                 app:civ_border_width="2dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/titleMyData" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout2"
+                style="@style/EditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginRight="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imgMDImage"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="@+id/imgMDImage">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtMDName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/backgroundTextView"
                     android:hint="Nome" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout3"
+                style="@style/EditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -62,11 +64,13 @@
                     android:id="@+id/txtMDApelido"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/backgroundTextView"
                     android:hint="Apelido" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout4"
+                style="@style/EditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -82,11 +86,13 @@
                     android:id="@+id/txtMDCpf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/backgroundTextView"
                     android:hint="CPF" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout5"
+                style="@style/EditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -102,11 +108,14 @@
                     android:id="@+id/txtMDCep"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Cep" />
+                    android:background="@color/backgroundTextView"
+                    android:hint="Cep"
+                    android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnMDSearchCep"
+                style="@style/Button"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
@@ -117,6 +126,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout6"
+                style="@style/EditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -132,11 +142,13 @@
                     android:id="@+id/txtMDStreet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/backgroundTextView"
                     android:hint="Logradouro" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout7"
+                style="@style/EditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -152,11 +164,13 @@
                     android:id="@+id/txtMDNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/backgroundTextView"
                     android:hint="Numero" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout8"
+                style="@style/EditText"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
@@ -168,11 +182,13 @@
                     android:id="@+id/txtMDComplement"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/backgroundTextView"
                     android:hint="Complemento" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout9"
+                style="@style/EditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -188,11 +204,13 @@
                     android:id="@+id/txtMDDistintic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/backgroundTextView"
                     android:hint="Bairro" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout10"
+                style="@style/EditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -208,11 +226,13 @@
                     android:id="@+id/txtMDCity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/backgroundTextView"
                     android:hint="Cidade" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout11"
+                style="@style/EditText"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
@@ -224,30 +244,65 @@
                     android:id="@+id/txtMDState"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/backgroundTextView"
                     android:hint="Estado" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                    android:id="@+id/btnMDAlter"
-                android:layout_width="160dp"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnMDAlter"
+                style="@style/Button"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginRight="15dp"
                 android:text="Salvar"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout11" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout10" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnMDLogoff"
+                style="@style/Button"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:text="Sair do App"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnMDAlter" />
+
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnMDAlterPasssword"
+                style="@style/Button"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
                 android:text="Alterar Senha"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/btnMDAlter" />
+                app:layout_constraintTop_toBottomOf="@+id/btnMDAlter" />
 
+            <TextView
+                android:id="@+id/titleMyData"
+                style="@style/TitleH1Dark"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center"
+                android:text="Alterar Dados"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </FrameLayout>

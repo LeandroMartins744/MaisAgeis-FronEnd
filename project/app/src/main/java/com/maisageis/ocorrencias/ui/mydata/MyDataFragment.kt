@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,11 +17,17 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.maisageis.ocorrencias.R
+import com.maisageis.ocorrencias.model.ErrorResponse
+import com.maisageis.ocorrencias.model.response.StreetCepResponse
 import com.maisageis.ocorrencias.model.response.UserResponse
-import com.maisageis.ocorrencias.util.SecurityData
-import com.maisageis.ocorrencias.util.SendUpdatePassword
+import com.maisageis.ocorrencias.ui.action.SearchCepViewAction
+import com.maisageis.ocorrencias.ui.login.LoginActivity
+import com.maisageis.ocorrencias.util.*
+import com.squareup.picasso.Picasso
 import org.koin.android.ext.android.inject
+import java.io.FileNotFoundException
 import java.lang.ref.WeakReference
 
 
@@ -40,9 +47,11 @@ class MyDataFragment : Fragment() {
     private lateinit var btnMDAlter: Button
     private lateinit var btnMDAlterPasssword: Button
     private lateinit var btnMDSearchCep: Button
+    private lateinit var btnMDLogoff: Button
 
     private lateinit var viewItem: View
     private val securityData: SecurityData by inject()
+    private val myDataViewModel: MyDataViewModel by inject()
 
     private lateinit var userData: UserResponse
 
@@ -66,6 +75,35 @@ class MyDataFragment : Fragment() {
         initViews()
         initData()
         setOnClicks()
+        setObservable()
+    }
+
+    private fun setObservable() {
+        myDataViewModel.actionCepSearchView.observe(requireActivity(), Observer { state ->
+            when(state){
+                is SearchCepViewAction.Success -> this.successCepSearch(state.item)
+                is SearchCepViewAction.Error -> this.errorCepSearch(state.item)
+                is SearchCepViewAction.Loading -> loadingPage(state.loading)
+            }
+        })
+    }
+
+    private fun successCepSearch(value: StreetCepResponse){
+        txtMDStreet.setText(value.street)
+        txtMDComplement.setText(value.complement)
+        txtMDDistintic.setText(value.district)
+        txtMDCity.setText(value.city)
+        txtMDState.setText(value.state)
+        loadingPage(false)
+    }
+
+    private fun errorCepSearch(value: ErrorResponse){
+        loadingPage(false)
+        ToastAlert(requireContext(), "Cep não encontrado...")
+    }
+
+    private fun loadingPage(visible: Boolean) {
+        //LoadPage(loadPage, getString(R.string.carregando), visible)
     }
 
     private fun setOnClicks() {
@@ -75,6 +113,19 @@ class MyDataFragment : Fragment() {
 
         imgMDImage.setOnClickListener {
             selectImageClick()
+        }
+
+        btnMDLogoff.setOnClickListener {
+            securityData.deleteValue()
+            ShowAlert(requireContext(), "Sair App", getString(R.string.closeapp), {
+                val intent = Intent(requireContext(), LoginActivity::class.java)
+                startActivity(intent)
+                requireActivity().finish()
+            }, "success")
+        }
+
+        btnMDSearchCep.setOnClickListener {
+            myDataViewModel.cepSearch(txtMDCep.text.toString())
         }
     }
 
@@ -108,6 +159,7 @@ class MyDataFragment : Fragment() {
         btnMDAlter = viewItem.findViewById(R.id.btnMDAlter)
         btnMDAlterPasssword = viewItem.findViewById(R.id.btnMDAlterPasssword)
         btnMDSearchCep = viewItem.findViewById(R.id.btnMDSearchCep)
+        btnMDLogoff = viewItem.findViewById(R.id.btnMDLogoff)
     }
 
     companion object {
@@ -142,7 +194,8 @@ class MyDataFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == IMAGE_GALLERY_REQUEST && resultCode == RESULT_OK) {
-            ///LoadImageTask(this).execute(data.data)
+            var imgSel = data?.data
+            Picasso.get().load(data?.data.toString()).into(imgMDImage)
         }
     }
 }

@@ -16,7 +16,11 @@ class App: Application() {
                     repoModule,
                     viewModelLoginModule,
                     viewModelRegisterModule,
-                    viewModelHomeModule)
+                    viewModelHomeModule,
+                    viewModelMyDataModule,
+                    viewModelDetailsModule,
+                    viewModelMapsModule,
+                    viewModelLocationModule)
             )
         }
     }

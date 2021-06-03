@@ -4,19 +4,35 @@ import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.view.animation.DecelerateInterpolator
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.ViewCompat
+import androidx.core.view.ViewPropertyAnimatorCompat
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.maisageis.ocorrencias.R
 
 fun ToastAlert(context: Context, message: String){
     Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 }
 
+private fun setAnimeView(context: Context, view: View, animation: Int = R.anim.fadein){
+    var animFadeIn: Animation = AnimationUtils.loadAnimation(
+        context,
+        animation
+    )
+    view.startAnimation(animFadeIn)
+}
+
 fun ShowAlert(context: Context, titleDialog: String, messageDialog: String, onClick: (String) -> Unit, icon: String = ""){
+
     val messageBoxView = LayoutInflater.from(context).inflate(R.layout.custom_message, null)
     val messageBoxBuilder = AlertDialog.Builder(context).setView(messageBoxView)
+
     messageBoxBuilder.setCancelable(false)
 
     var title: TextView = messageBoxView.findViewById(R.id.txtPassTitle)
@@ -37,6 +53,9 @@ fun ShowAlert(context: Context, titleDialog: String, messageDialog: String, onCl
         messageBoxInstance.dismiss()
         onClick.invoke("")
     }
+
+    setAnimeView(context, image)
+    setAnimeView(context, message)
 }
 
 fun SendPassword(context: Context){
@@ -67,6 +86,10 @@ fun SendPassword(context: Context){
     messageBoxView.setOnClickListener(){
         messageBoxInstance.dismiss()
     }
+
+    setAnimeView(context, email)
+    setAnimeView(context, cancel)
+    setAnimeView(context, send)
 }
 
 fun SendUpdatePassword(context: Context){
@@ -99,6 +122,12 @@ fun SendUpdatePassword(context: Context){
     messageBoxView.setOnClickListener(){
         messageBoxInstance.dismiss()
     }
+
+    setAnimeView(context, ord)
+    setAnimeView(context, new)
+    setAnimeView(context, conf)
+    setAnimeView(context, cancel)
+    setAnimeView(context, send)
 }
 
 fun LoadPage(view: View, text: String, visible: Boolean = false){
@@ -109,4 +138,17 @@ fun LoadPage(view: View, text: String, visible: Boolean = false){
     }
     else
         view.visibility = View.GONE
+}
+
+fun LoadShimmer(shimmer: ShimmerFrameLayout, visible: Boolean = false, viewLayout: View? = null){
+    if(visible) {
+        shimmer.startShimmerAnimation()
+        shimmer.visibility = View.VISIBLE
+        viewLayout?.visibility = View.GONE
+    }
+    else {
+        shimmer.stopShimmerAnimation()
+        shimmer.visibility = View.GONE
+        viewLayout?.visibility = View.VISIBLE
+    }
 }

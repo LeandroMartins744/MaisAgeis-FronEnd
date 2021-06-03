@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/backgroundalert"
     android:layout_height="match_parent">
 
 
@@ -15,7 +16,7 @@
         android:textColor="@color/white"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/secondaryDarkColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,7 +29,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtPassTitle"
-        app:srcCompat="@drawable/ic_alert_error" />
+        android:src="@drawable/ic_alert_error" />
 
     <TextView
         android:id="@+id/txtMsgMessage"
@@ -40,6 +41,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:text="Message"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgMsgAlert"
         app:layout_constraintTop_toBottomOf="@+id/txtPassTitle" />

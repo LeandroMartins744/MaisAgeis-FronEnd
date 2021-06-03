@@ -1,5 +1,12 @@
 package com.maisageis.ocorrencias.ui.splash
 
+import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Bundle
 import android.os.Handler
 import android.view.ViewGroup
@@ -7,13 +14,15 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat.animate
 import androidx.core.view.ViewPropertyAnimatorCompat
+import com.maisageis.ocorrencias.MainActivity
 import com.maisageis.ocorrencias.R
-import com.maisageis.ocorrencias.ui.register.RegisterActivity
 import com.maisageis.ocorrencias.ui.login.LoginActivity
-import com.maisageis.ocorrencias.ui.slider.SliderActivity
+import com.maisageis.ocorrencias.ui.register.RegisterActivity
 import com.maisageis.ocorrencias.util.SecurityData
 import org.koin.android.ext.android.inject
 
@@ -32,6 +41,7 @@ class SplashActivity : AppCompatActivity() {
     private lateinit var logoImageView: ImageView
     private lateinit var container: ViewGroup
     private lateinit var load: TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,7 +102,8 @@ class SplashActivity : AppCompatActivity() {
             .setDuration(500).start()
 
         Handler().postDelayed(Runnable {
-            startActivity(SliderActivity.newInstance(this))
+           // startActivity(SliderActivity.newInstance(this))
+            startActivity(MainActivity.newInstance(this))
             finish()
         }, 3000)
     }

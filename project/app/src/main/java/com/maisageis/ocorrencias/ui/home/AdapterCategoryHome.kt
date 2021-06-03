@@ -4,11 +4,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.maisageis.ocorrencias.R
 import com.maisageis.ocorrencias.model.response.CategoryResponse
+import com.squareup.picasso.Picasso
 
 class AdapterCategoryHome(
     private val context: Context,
@@ -28,9 +30,10 @@ class AdapterCategoryHome(
 
         val dfVH = holder as DefaultViewHolder
 
-        dfVH.title.setText(item.name)
-        dfVH.total.setText(item.total.toString())
-        dfVH.description.setText(item.reference)
+        dfVH.title.text = item.name
+        dfVH.total.text = item.total.toString()
+        dfVH.description.text = "Ver Detalhes"
+        Picasso.get().load(item.image).into(dfVH.image);
         //dfVH.const.background = item.image
 
     }
@@ -46,6 +49,7 @@ class AdapterCategoryHome(
         val title: TextView = itemView.findViewById(R.id.cardTitleText)
         val total: TextView = itemView.findViewById(R.id.cardTotal)
         val description: TextView = itemView.findViewById(R.id.cardDescription)
+        val image: ImageView = itemView.findViewById(R.id.cardImage)
         init {
             mView.setOnClickListener {
                 val position = adapterPosition

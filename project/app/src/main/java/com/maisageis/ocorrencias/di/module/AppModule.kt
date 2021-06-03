@@ -11,9 +11,14 @@ import com.maisageis.ocorrencias.data.util.*
 import com.maisageis.ocorrencias.repository.BORepository
 import com.maisageis.ocorrencias.repository.StreetRepository
 import com.maisageis.ocorrencias.repository.UserRepository
+import com.maisageis.ocorrencias.ui.detail.DetailsViewModel
 import com.maisageis.ocorrencias.ui.home.HomeViewModel
+import com.maisageis.ocorrencias.ui.location.LocationViewModel
 import com.maisageis.ocorrencias.ui.login.LoginViewModel
+import com.maisageis.ocorrencias.ui.maps.MapsViewModel
+import com.maisageis.ocorrencias.ui.mydata.MyDataViewModel
 import com.maisageis.ocorrencias.ui.register.RegisterViewModel
+import com.maisageis.ocorrencias.util.LocationStatus
 import com.maisageis.ocorrencias.util.Security
 import com.maisageis.ocorrencias.util.SecurityData
 import okhttp3.OkHttpClient
@@ -55,6 +60,7 @@ val repoModule = module {
     single { BORepository(get()) }
     single { Security(androidApplication()) }
     single { SecurityData(get()) }
+    single { LocationStatus(get()) }
 }
 
 val viewModelModule = module {
@@ -79,5 +85,29 @@ val viewModelRegisterModule = module {
 val viewModelHomeModule = module {
     viewModel {
         HomeViewModel(get())
+    }
+}
+
+val viewModelMyDataModule = module {
+    viewModel {
+        MyDataViewModel(get(), get())
+    }
+}
+
+val viewModelDetailsModule = module {
+    viewModel {
+        DetailsViewModel(get())
+    }
+}
+
+val viewModelMapsModule = module {
+    viewModel {
+        MapsViewModel(get())
+    }
+}
+
+val viewModelLocationModule = module {
+    viewModel {
+        LocationViewModel(get())
     }
 }

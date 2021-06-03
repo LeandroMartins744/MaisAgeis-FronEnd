@@ -7,15 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.maisageis.ocorrencias.model.ErrorResponse
 import com.maisageis.ocorrencias.model.response.CategoryResponse
 import com.maisageis.ocorrencias.repository.BORepository
+import com.maisageis.ocorrencias.ui.action.CategoryViewAction
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-
-sealed class CategoryViewAction{
-    open class Success(val item: List<CategoryResponse>): CategoryViewAction()
-    open class Loading(val loading: Boolean): CategoryViewAction()
-    open class Error(val item: ErrorResponse): CategoryViewAction()
-}
 
 class HomeViewModel(
     private val boRepository: BORepository
