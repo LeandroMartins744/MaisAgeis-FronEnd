@@ -20,7 +20,7 @@ fun ToastAlert(context: Context, message: String){
     Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 }
 
-private fun setAnimeView(context: Context, view: View, animation: Int = R.anim.fadein){
+fun setAnimeView(context: Context, view: View, animation: Int = R.anim.fadein){
     var animFadeIn: Animation = AnimationUtils.loadAnimation(
         context,
         animation

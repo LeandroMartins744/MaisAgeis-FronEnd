@@ -14,6 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.maisageis.ocorrencias.ui.home.HomeFragment
 import com.maisageis.ocorrencias.ui.location.LocationFragment
 import com.maisageis.ocorrencias.ui.maps.MapsFragment
+import com.maisageis.ocorrencias.ui.maps.MyMapsFragment
 import com.maisageis.ocorrencias.ui.mydata.MyDataFragment
 
 class MainActivity : AppCompatActivity() {
@@ -56,7 +57,8 @@ class MainActivity : AppCompatActivity() {
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_location -> {
-                    val songsFragment = LocationFragment.newInstance()
+                   // val songsFragment = LocationFragment.newInstance()
+                    val songsFragment = MyMapsFragment.newInstance()
                     openFragment(songsFragment)
                     return@OnNavigationItemSelectedListener true
                 }
