@@ -6,15 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".ui.maps.MapsFragment">
 
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/layout_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        tools:visibility="visible">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <Spinner
             android:id="@+id/titleLocation"
             style="@style/TitleH1Dark"
+            android:spinnerMode="dialog"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"
@@ -159,8 +166,25 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/MapslblCity" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <LinearLayout
+            android:id="@+id/railsMaps"
+            android:layout_width="match_parent"
+            android:layout_height="245dp"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/MapsbtnSearch">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleMaps"
+                android:layout_width="match_parent"
+                android:layout_height="245dp" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
     <include
         android:id="@+id/mapsProgressBar"
         layout="@layout/load_page"

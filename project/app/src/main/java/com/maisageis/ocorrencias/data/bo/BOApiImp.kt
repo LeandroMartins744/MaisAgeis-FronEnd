@@ -6,6 +6,7 @@ import com.maisageis.ocorrencias.model.ErrorResponse
 import com.maisageis.ocorrencias.model.request.BORelRequest
 import com.maisageis.ocorrencias.model.response.CategoryResponse
 import com.maisageis.ocorrencias.model.response.CoodResponse
+import com.maisageis.ocorrencias.model.response.getSearchStreet
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,6 +26,26 @@ class BOApiImp() : BOApi {
             }
 
             override fun onFailure(call: Call<List<CategoryResponse>>, t: Throwable) {
+                onError(ErrorResponse(message = t.message!!, out = t.cause))
+            }
+        })
+    }
+
+    override suspend fun geSearch(
+        value: BORelRequest,
+        onSuccess: (List<getSearchStreet>) -> Unit,
+        onError: (ErrorResponse) -> Unit
+    ) {
+        val request = RetrofitInitializer.buildService(ApiService::class.java)
+        request.geCity(value).enqueue(object : Callback<List<getSearchStreet>> {
+            override fun onResponse(call: Call<List<getSearchStreet>>, response: Response<List<getSearchStreet>>) {
+                if (response.isSuccessful)
+                    onSuccess(response.body()!!)
+                else
+                    onError(ErrorResponse(response.code(), response.message()))
+            }
+
+            override fun onFailure(call: Call<List<getSearchStreet>>, t: Throwable) {
                 onError(ErrorResponse(message = t.message!!, out = t.cause))
             }
         })

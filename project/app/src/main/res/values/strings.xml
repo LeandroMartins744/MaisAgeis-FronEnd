@@ -16,6 +16,8 @@
     <string name="carregando">Carregando</string>
     <string name="loginInvalido">Login ou senha inválidos</string>
     <string name="logindesativado">Usuário aguardando confirmação de email</string>
+    <string name="loginpassword">Sua senha foi encaminha para o sei email cadastrado</string>
+    <string name="loginnaopassword">Email não cadastrado</string>
     <string name="closeapp">Você será redirecionado para a tela principal</string>
     <string name="shared_preferences_name">user_preferences</string>
 </resources>

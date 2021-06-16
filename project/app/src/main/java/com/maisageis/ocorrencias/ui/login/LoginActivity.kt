@@ -56,6 +56,8 @@ class LoginActivity : AppCompatActivity() {
                  is LoginViewAction.Success -> this.successLogin(state.item)
                  is LoginViewAction.Error -> this.errorLogin(state.item)
                  is LoginViewAction.Loading -> loadingPage(state.loading)
+                 is LoginViewAction.SuccessEmail -> this.successPassword(state.item)
+                 is LoginViewAction.ErrorEmail -> this.errorPassword(state.item)
              }
          })
 
@@ -65,10 +67,10 @@ class LoginActivity : AppCompatActivity() {
         }
 
         lxlEsqueci.setOnClickListener {
-            ShowAlert(this@LoginActivity, "Login Usuário", getString(R.string.loginInvalido), {}, "success")
-            ShowAlert(this@LoginActivity, "Login Usuário", getString(R.string.loginInvalido), {}, "")
-            ShowAlert(this, "teste", "ghj hjghjghjg h bn vv dfgdf g b  df bm, bfd m,b g fgfdgdfgvdffg d dgdfdf", {}, "success")
-            SendPassword(this)
+            SendPassword(this){
+                loadingPage(true)
+                loginViewModel.loginPassword(it)
+            }
         }
 
         btnLogin.setOnClickListener {
@@ -81,6 +83,15 @@ class LoginActivity : AppCompatActivity() {
         val intent = Intent(this@LoginActivity, SliderActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    private fun successPassword(user: Boolean) {
+        loadingPage(false)
+        ShowAlert(this@LoginActivity, "Esqueci Senha", getString(R.string.loginpassword), {}, "success")
+    }
+    private fun errorPassword(user: ErrorResponse) {
+        loadingPage(false)
+        ShowAlert(this@LoginActivity, "Esqueci Senha", getString(R.string.loginnaopassword), {}, "error")
     }
 
     private fun errorLogin(ex: ErrorResponse){

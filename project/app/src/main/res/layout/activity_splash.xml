@@ -47,7 +47,7 @@
                 android:layout_marginTop="8dp"
                 android:alpha="0"
                 android:gravity="center"
-                android:text="Sistema de Segurança"
+                android:text="+Seguro"
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"

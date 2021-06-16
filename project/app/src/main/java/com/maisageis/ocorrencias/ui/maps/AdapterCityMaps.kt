@@ -1,4 +1,4 @@
-package com.maisageis.ocorrencias.ui.detail
+package com.maisageis.ocorrencias.ui.maps
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,20 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.maisageis.ocorrencias.R
 import com.maisageis.ocorrencias.model.response.CategoryResponse
+import com.maisageis.ocorrencias.model.response.getSearchStreet
 import com.squareup.picasso.Picasso
 
-class AdapterCategoryDetails(
+class AdapterCityMaps(
     private val context: Context,
-    private val data: List<CategoryResponse>,
-    private var itemSelected: (CategoryResponse) -> Unit
+    private val data: List<getSearchStreet>,
+    private var itemSelected: (getSearchStreet) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(context)
-        val mView = inflater.inflate(R.layout.item_card_category_details, parent, false)
+        val mView = inflater.inflate(R.layout.item_card_category, parent, false)
 
         return DefaultViewHolder(mView)
     }
@@ -29,16 +31,12 @@ class AdapterCategoryDetails(
 
         val dfVH = holder as DefaultViewHolder
 
-        dfVH.title.text = this.formatText(item.name)
-        Picasso.get().load(item.image).into(dfVH.image)
-    }
+        dfVH.title.text = item.categoria
+        dfVH.total.text = item.total.toString()
+        dfVH.description.text = item.descricao
+        Picasso.get().load(item.imagem).into(dfVH.image);
+        //dfVH.const.background = item.image
 
-    private fun formatText(str: String): String {
-        var result = ""
-        var text = if (str.contains("LESÃO CORPORAL", ignoreCase = true)) "LESÃO CORPORAL" else str
-        for (item in text)
-            result += item + "\n"
-        return result
     }
 
     override fun getItemCount(): Int {
@@ -46,13 +44,20 @@ class AdapterCategoryDetails(
     }
 
     private inner class DefaultViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val title: TextView = itemView.findViewById(R.id.detailTitleText)
-        val image: ImageView = itemView.findViewById(R.id.detailImage)
+        val mView = itemView.rootView
 
+        val const: ConstraintLayout = itemView.findViewById(R.id.cardId)
+        val title: TextView = itemView.findViewById(R.id.cardTitleText)
+        val total: TextView = itemView.findViewById(R.id.cardTotal)
+        val description: TextView = itemView.findViewById(R.id.cardDescription)
+        val image: ImageView = itemView.findViewById(R.id.cardImage)
         init {
-            itemView.rootView.setOnClickListener {
+            mView.setOnClickListener {
                 val position = adapterPosition
                 val item = data[position]
+
+
+               // val item = data[position]
 
                 itemSelected.invoke(item)
             }

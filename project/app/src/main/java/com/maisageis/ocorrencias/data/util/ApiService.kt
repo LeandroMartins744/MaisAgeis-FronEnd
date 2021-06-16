@@ -42,13 +42,22 @@ import retrofit2.http.*
     @POST("project/api/User")
     fun postUser(@Body value: UserRequest): Call<UserResponse>
 
+    @PUT("project/api/User")
+    fun puttUser(@Body value: UserRequest): Call<Boolean>
+
     @POST("project/api/User/LoginUser")
     fun getLogin(@Body value: LoginRequest): Call<UserResponse>
+
+    @POST("project/api/User/Password")
+    fun getLoginPassword(@Body value: UserRequest): Call<Boolean>
 
 
     //BO Category
     @GET("project/api/BOCategory")
     fun geCategory(): Call<List<CategoryResponse>>
+
+    @POST("project/api/BO/City")
+    fun geCity(@Body value: BORelRequest): Call<List<getSearchStreet>>
 
     @POST("project/api/BO/Category")
     fun geDetails(@Body value: BORelRequest): Call<CoodResponse>

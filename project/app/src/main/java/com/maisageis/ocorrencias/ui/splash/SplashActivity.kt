@@ -23,6 +23,7 @@ import com.maisageis.ocorrencias.MainActivity
 import com.maisageis.ocorrencias.R
 import com.maisageis.ocorrencias.ui.login.LoginActivity
 import com.maisageis.ocorrencias.ui.register.RegisterActivity
+import com.maisageis.ocorrencias.ui.slider.SliderActivity
 import com.maisageis.ocorrencias.util.SecurityData
 import org.koin.android.ext.android.inject
 
@@ -102,7 +103,7 @@ class SplashActivity : AppCompatActivity() {
             .setDuration(500).start()
 
         Handler().postDelayed(Runnable {
-           // startActivity(SliderActivity.newInstance(this))
+            //startActivity(SliderActivity.newInstance(this))
             startActivity(MainActivity.newInstance(this))
             finish()
         }, 3000)

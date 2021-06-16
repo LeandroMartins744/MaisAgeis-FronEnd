@@ -10,4 +10,5 @@ import java.lang.Exception
 interface BOApi{
     suspend fun geCategory(onSuccess: (List<CategoryResponse>) -> Unit, onError: (ErrorResponse) -> Unit)
     suspend fun geDetails(value: BORelRequest, onSuccess: (CoodResponse) -> Unit, onError: (ErrorResponse) -> Unit)
+    suspend fun geSearch(value: BORelRequest, onSuccess: (List<getSearchStreet>) -> Unit, onError: (ErrorResponse) -> Unit)
 }

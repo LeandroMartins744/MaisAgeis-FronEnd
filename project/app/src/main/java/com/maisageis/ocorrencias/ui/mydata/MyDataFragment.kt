@@ -20,7 +20,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.maisageis.ocorrencias.R
 import com.maisageis.ocorrencias.model.ErrorResponse
+import com.maisageis.ocorrencias.model.request.UserRequest
+import com.maisageis.ocorrencias.model.response.LoginResponse
 import com.maisageis.ocorrencias.model.response.StreetCepResponse
+import com.maisageis.ocorrencias.model.response.StreetResponse
 import com.maisageis.ocorrencias.model.response.UserResponse
 import com.maisageis.ocorrencias.ui.action.SearchCepViewAction
 import com.maisageis.ocorrencias.ui.login.LoginActivity
@@ -86,6 +89,24 @@ class MyDataFragment : Fragment() {
                 is SearchCepViewAction.Loading -> loadingPage(state.loading)
             }
         })
+
+        myDataViewModel.actionUserView.observe(requireActivity(), Observer { state ->
+            when(state){
+                is UserActionView.Success -> this.success(state.item)
+                is UserActionView.Error -> this.error(state.item)
+                is UserActionView.Loading -> loadingPage(state.loading)
+            }
+        })
+    }
+    private fun success(value: Boolean){
+        loadingPage(false)
+        securityData.setUser(createResponse())
+        ShowAlert(requireContext(), "Alterar Usuário", "Usuário alterado com sucesso", {}, "success")
+    }
+
+    private fun error(value: ErrorResponse){
+        loadingPage(false)
+        ShowAlert(requireContext(), "Alterar Usuário", "Falha ao alterar usuário", {}, "error")
     }
 
     private fun successCepSearch(value: StreetCepResponse){
@@ -108,7 +129,15 @@ class MyDataFragment : Fragment() {
 
     private fun setOnClicks() {
         btnMDAlterPasssword.setOnClickListener {
-            SendUpdatePassword(requireActivity())
+            SendUpdatePassword(requireActivity(), userData.login)
+        }
+
+        btnMDAlter.setOnClickListener {
+            if (validInputs()) {
+                loadingPage(true)
+                myDataViewModel.alterUser(createRequest())
+            } else
+                ToastAlert(requireContext(), "Por favor, preenchar todos os campos")
         }
 
         imgMDImage.setOnClickListener {
@@ -129,19 +158,71 @@ class MyDataFragment : Fragment() {
         }
     }
 
+    private fun createRequest() = UserRequest(
+        userData.id,
+        userData.street.idStreet,
+        userData.cpf,
+        txtMDName.text.toString(),
+        txtMDApelido.text.toString(),
+        "",
+        userData.login.user,
+        "",
+        txtMDStreet.text.toString(),
+        txtMDNumber.text.toString(),
+        txtMDComplement.text.toString(),
+        txtMDDistintic.text.toString(),
+        txtMDCity.text.toString(),
+        txtMDState.text.toString(),
+        "",
+        ""
+    )
+    private fun createResponse() = UserResponse(
+        id = userData.id,
+        street = StreetResponse(
+            idStreet =  userData.street.idStreet,
+            street = txtMDStreet.text.toString(),
+            number = txtMDNumber.text.toString(),
+            complement = txtMDComplement.text.toString(),
+            district = txtMDDistintic.text.toString(),
+            city = txtMDCity.text.toString(),
+            state = txtMDState.text.toString(),
+            longetude = "",
+            latitude = ""
+        ),
+        login = userData.login,
+        log = userData.log,
+        cpf = userData.cpf,
+        name = txtMDName.text.toString(),
+        surname = txtMDApelido.text.toString(),
+        image = ""
+    )
+
+    private fun validInputs(): Boolean {
+        return (
+                !txtMDName.text.isNullOrEmpty() &&
+                !txtMDApelido.text.isNullOrEmpty() &&
+                !txtMDStreet.text.isNullOrEmpty() &&
+                !txtMDNumber.text.isNullOrEmpty() &&
+                !txtMDComplement.text.isNullOrEmpty() &&
+                !txtMDDistintic.text.isNullOrEmpty() &&
+                !txtMDCity.text.isNullOrEmpty() &&
+                !txtMDState.text.isNullOrEmpty()
+        )
+    }
+
     private fun initData() {
         userData = securityData.getUer()!!
 
-//        txtMDName.setText(userData.name)
-//        txtMDApelido.setText(userData.surname)
-//        txtMDCpf.setText(userData.cpf)
-//        txtMDCep.setText("00000-00")
-//        txtMDStreet.setText(userData.street.street)
-//        txtMDNumber.setText(userData.street.number)
-//        txtMDComplement.setText(userData.street.complement)
-//        txtMDDistintic.setText(userData.street.district)
-//        txtMDCity.setText(userData.street.city)
-//        txtMDState.setText(userData.street.state)
+        txtMDName.setText(userData.name)
+        txtMDApelido.setText(userData.surname)
+        txtMDCpf.setText(userData.cpf)
+        txtMDCep.setText("")
+        txtMDStreet.setText(userData.street.street)
+        txtMDNumber.setText(userData.street.number)
+        txtMDComplement.setText(userData.street.complement)
+        txtMDDistintic.setText(userData.street.district)
+        txtMDCity.setText(userData.street.city)
+        txtMDState.setText(userData.street.state)
     }
 
     private fun initViews() {

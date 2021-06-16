@@ -102,7 +102,7 @@ val viewModelDetailsModule = module {
 
 val viewModelMapsModule = module {
     viewModel {
-        MapsViewModel(get())
+        MapsViewModel(get(),get())
     }
 }
 

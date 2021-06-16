@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.ImageSlider
+import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.github.mikephil.charting.charts.PieChart
@@ -127,8 +128,9 @@ class HomeFragment : Fragment() {
     private fun loadImageSlider(){
         imageList = ArrayList<SlideModel>()
 
-        imageList.add(SlideModel("https://bit.ly/2BteuF2"))
-        imageList.add(SlideModel("https://bit.ly/3fLJf72"))
+        imageList.add(SlideModel(R.drawable.slider01, scaleType = ScaleTypes.CENTER_CROP))
+        imageList.add(SlideModel(R.drawable.slider02, scaleType = ScaleTypes.CENTER_CROP))
+        imageList.add(SlideModel(R.drawable.slider03, scaleType = ScaleTypes.CENTER_CROP))
 
         imageSlider.setImageList(imageList)
     }
@@ -172,13 +174,16 @@ class HomeFragment : Fragment() {
     private fun generatePieData(category: List<CategoryResponse>): PieData? {
         val entries1 = ArrayList<Entry>()
         val values = ArrayList<String>()
-        for (item in category)
-            values.add(item.name)
 
-        for (i in 0 until values.size) {
-            values.add("entry" + (i + 1))
-            entries1.add(Entry(category[i].total.toFloat() + 40, i ))
+        var i = 0
+        for (item in category) {
+            if(item.total > 0) {
+                values.add(item.name)
+                entries1.add(Entry(item.total.toFloat(), i))
+                i++
+            }
         }
+
         val ds1 = PieDataSet(entries1, "")
         ds1.setDrawValues(true)
         ds1.setColors(ColorTemplate.PASTEL_COLORS)

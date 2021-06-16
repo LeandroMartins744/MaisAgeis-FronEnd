@@ -36,7 +36,7 @@ class MyMapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
     private lateinit var include: View
     private lateinit var searchButton: FloatingActionButton
 
-   /* private const val PLACE_PICKER_REQUEST = 3
+    private val PLACE_PICKER_REQUEST = 3
 
     private fun setLocation() {
         locationStatus.configurationService {
@@ -50,15 +50,11 @@ class MyMapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
             val myLocation = LatLng(latitude, longitude)
             var marker = MarkerOptions()
             marker.position(myLocation)
-            marker.title("titulo")
-            marker.snippet("sdjsdfh jkssdhfjksdfh\nsdjsdfh jkssdhfjksdfh\nsdjsdfh jkssdhfjksdfh\nsdjsdfh jkssdhfjksdfh")
-           //.position(myLocation).title("Marker in Sydney")
 
             googleMap.addMarker(marker)
 
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 15F))
-            //googleMap.moveCamera(CameraUpdateFactory.zoomTo(15F))
-            googleMap.setOnMarkerClickListener(this);
+            googleMap.setOnMarkerClickListener(this)
         })
 
     }
@@ -104,7 +100,7 @@ class MyMapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
         }
     }
     private fun loadPlacePicker() {
-        val builder = PlacePicker.IntentBuilder()
+       /* val builder = PlacePicker.IntentBuilder()
 
         try {
             startActivityForResult(builder.build(requireActivity()), PLACE_PICKER_REQUEST)
@@ -112,17 +108,17 @@ class MyMapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
             e.printStackTrace()
         } catch (e: GooglePlayServicesNotAvailableException) {
             e.printStackTrace()
-        }
+        }*/
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
-                val place = PlacePicker.getPlace(this, data)
-                var addressText = place.name.toString()
-                addressText += "\n" + place.address.toString()
+               // val place = PlacePicker.getPlace(this, data)
+                //var addressText = place.name.toString()
+               // addressText += "\n" + place.address.toString()
 
-                placeMarkerOnMap(place.latLng)
+               // placeMarkerOnMap(place.latLng)
             }
         }
     }
@@ -132,6 +128,4 @@ class MyMapsFragment : Fragment(), GoogleMap.OnMarkerClickListener {
     private fun setOnCClick(){
        // mapFragment.
     }
-
-    */
 }

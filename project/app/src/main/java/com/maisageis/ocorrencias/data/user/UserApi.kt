@@ -8,5 +8,7 @@ import com.maisageis.ocorrencias.model.response.UserResponse
 
 interface UserApi {
     suspend fun postUser(value: UserRequest, onSuccess: (UserResponse) -> Unit, onError: (ErrorResponse) -> Unit)
+    suspend fun putUser(value: UserRequest, onSuccess: (Boolean) -> Unit, onError: (ErrorResponse) -> Unit)
     suspend fun getLogin(value: LoginRequest, onSuccess: (UserResponse) -> Unit, onError: (ErrorResponse) -> Unit)
+    suspend fun getPassword(value: UserRequest, onSuccess: (Boolean) -> Unit, onError: (ErrorResponse) -> Unit)
 }

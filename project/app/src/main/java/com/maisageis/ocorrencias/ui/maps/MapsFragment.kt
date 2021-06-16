@@ -4,17 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.maisageis.ocorrencias.R
 import com.maisageis.ocorrencias.model.ErrorResponse
 import com.maisageis.ocorrencias.model.response.StreetCepResponse
-import com.maisageis.ocorrencias.ui.action.CategoryViewAction
+import com.maisageis.ocorrencias.model.response.getSearchStreet
 import com.maisageis.ocorrencias.ui.action.SearchCepViewAction
-import com.maisageis.ocorrencias.ui.detail.DetailFragment
-import com.maisageis.ocorrencias.ui.register.RegisterViewModel
 import com.maisageis.ocorrencias.util.LoadPage
 import com.maisageis.ocorrencias.util.ToastAlert
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -29,6 +28,17 @@ class MapsFragment : Fragment() {
     private lateinit var state: TextView
     private lateinit var searchCep: Button
     private lateinit var search: Button
+
+
+    private lateinit var spinner: Spinner
+    private lateinit var contatos: ArrayList<String>
+    private lateinit var adapterContatos: ArrayAdapter<String>
+
+
+
+    private lateinit var linear: LinearLayout
+    private lateinit var recycle: RecyclerView
+    private lateinit var adapterItem: AdapterCityMaps
 
     private lateinit var loadPage: View
     private lateinit var mView: View
@@ -51,6 +61,7 @@ class MapsFragment : Fragment() {
         initViews()
         setOnClick()
         setObservable()
+        gerarNomes(100)
 
         return mView
     }
@@ -61,16 +72,31 @@ class MapsFragment : Fragment() {
         }
 
         search.setOnClickListener {
-            var bundle: Bundle = Bundle()
-            bundle.putString("category", "2")
-            val details = DetailFragment.newInstance()
-            details.arguments = bundle
-
-            val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.container, details)
-            transaction.addToBackStack(null)
-            transaction.commit()
+            if(this.city.text.toString().isEmpty())
+                ToastAlert(requireContext(), "Preencher a cidade")
+            else
+                mapsViewModel.citySearch(this.city.text.toString())
         }
+
+
+
+
+    }
+    private fun gerarNomes(quantidade: Int) {
+        contatos = arrayListOf()
+
+        for( i in 1..quantidade) {
+            contatos.add("Nome - $i")
+        }
+
+        adapterContatos = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            contatos
+        )
+
+
+        spinner.adapter = adapterContatos
     }
 
     private fun initViews() {
@@ -82,6 +108,14 @@ class MapsFragment : Fragment() {
         this.state = mView.findViewById(R.id.MapstxtState)
         this.searchCep = mView.findViewById(R.id.MapsSearchCep)
         this.search = mView.findViewById(R.id.MapsbtnSearch)
+
+        this.linear = mView.findViewById(R.id.railsMaps)
+        this.recycle = mView.findViewById(R.id.recycleMaps)
+
+        this.recycle.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL ,false)
+
+
+        this.spinner = mView.findViewById(R.id.titleLocation)
     }
 
     private fun setObservable(){
@@ -92,6 +126,38 @@ class MapsFragment : Fragment() {
                 is SearchCepViewAction.Loading -> loadingPage(state.loading)
             }
         })
+
+        mapsViewModel.actionCityView.observe(requireActivity(), Observer { state ->
+            when(state){
+                is SearchCityViewAction.Success -> this.successCitySearch(state.item)
+                is SearchCityViewAction.Error -> this.errorCitySearch(state.item)
+                is SearchCityViewAction.Loading -> loadingPage(state.loading)
+            }
+        })
+    }
+
+    private fun successCitySearch(value: List<getSearchStreet>){
+
+        loadingPage(false)
+
+        this.recycle.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL ,false)
+        adapterItem = AdapterCityMaps(
+            requireContext(),
+            value
+        )
+        {
+
+        }
+        recycle.apply {
+            adapter = adapterItem
+        }
+
+        //linear.visibility = View.VISIBLE
+    }
+
+    private fun errorCitySearch(value: ErrorResponse){
+        loadingPage(false)
+        ToastAlert(requireContext(), "Cep não encontrado...")
     }
 
     private fun successCepSearch(value: StreetCepResponse){

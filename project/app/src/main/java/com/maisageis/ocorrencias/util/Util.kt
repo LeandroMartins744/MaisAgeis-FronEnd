@@ -15,6 +15,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.ViewPropertyAnimatorCompat
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.maisageis.ocorrencias.R
+import com.maisageis.ocorrencias.model.response.LoginResponse
 
 fun ToastAlert(context: Context, message: String){
     Toast.makeText(context, message, Toast.LENGTH_LONG).show()
@@ -58,7 +59,7 @@ fun ShowAlert(context: Context, titleDialog: String, messageDialog: String, onCl
     setAnimeView(context, message)
 }
 
-fun SendPassword(context: Context){
+fun SendPassword(context: Context, onClick: (String) -> Unit){
     val messageBoxView = LayoutInflater.from(context).inflate(R.layout.custom_password, null)
     val messageBoxBuilder = AlertDialog.Builder(context).setView(messageBoxView)
     messageBoxBuilder.setCancelable(false)
@@ -78,6 +79,7 @@ fun SendPassword(context: Context){
     send.setOnClickListener {
         if(email.text.isNotEmpty()){
             messageBoxInstance.dismiss()
+            onClick.invoke(email.text.toString())
         }
         else
             Toast.makeText(context, "Email precisa ser preenchido", Toast.LENGTH_LONG).show()
@@ -92,7 +94,7 @@ fun SendPassword(context: Context){
     setAnimeView(context, send)
 }
 
-fun SendUpdatePassword(context: Context){
+fun SendUpdatePassword(context: Context, login: LoginResponse){
     val messageBoxView = LayoutInflater.from(context).inflate(R.layout.custom_alter_password, null)
     val messageBoxBuilder = AlertDialog.Builder(context).setView(messageBoxView)
     messageBoxBuilder.setCancelable(false)
@@ -112,11 +114,22 @@ fun SendUpdatePassword(context: Context){
     }
 
     send.setOnClickListener {
-        if(ord.text.isNotEmpty()){
-            messageBoxInstance.dismiss()
+        if(ord.text.toString() == login.password)
+        {
+            if(new.length() > 5){
+                if(new.text.toString() == conf.text.toString()){
+                    Toast.makeText(context, "Senha alterada com sucesso", Toast.LENGTH_LONG).show()
+                    messageBoxInstance.dismiss()
+                }
+                else
+                    Toast.makeText(context, "Senha diferente de confirmação", Toast.LENGTH_LONG).show()
+            }
+            else
+                Toast.makeText(context, "Senha precisar ter 6 digitos", Toast.LENGTH_LONG).show()
         }
         else
-            Toast.makeText(context, "Email precisa ser preenchido", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "Senha antiga inválida", Toast.LENGTH_LONG).show()
+
     }
 
     messageBoxView.setOnClickListener(){
@@ -150,5 +163,41 @@ fun LoadShimmer(shimmer: ShimmerFrameLayout, visible: Boolean = false, viewLayou
         shimmer.stopShimmerAnimation()
         shimmer.visibility = View.GONE
         viewLayout?.visibility = View.VISIBLE
+    }
+}
+
+fun validCpf(cpf: String): Boolean {
+    if (cpf.isEmpty()) return false
+
+    val numbers = arrayListOf<Int>()
+
+    cpf.filter { it.isDigit() }.forEach {
+        numbers.add(it.toString().toInt())
+    }
+
+    if (numbers.size != 11) return false
+
+    (0..9).forEach { n ->
+        val digits = arrayListOf<Int>()
+        (0..10).forEach { digits.add(n) }
+        if (numbers == digits) return false
+    }
+
+    val dv1 = ((0..8).sumBy { (it + 1) * numbers[it] }).rem(11).let {
+        if (it >= 10) 0 else it
+    }
+
+    val dv2 = ((0..8).sumBy { it * numbers[it] }.let { (it + (dv1 * 9)).rem(11) }).let {
+        if (it >= 10) 0 else it
+    }
+
+    return numbers[9] == dv1 && numbers[10] == dv2
+}
+
+fun validEmail(email:String): Boolean{
+    return if (email.isEmpty()) {
+        false;
+    } else {
+        android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 }

@@ -11,6 +11,7 @@
     <TextView
         android:id="@+id/textView2"
         android:textColor="@color/white"
+        style="@style/TitleH2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -18,21 +19,23 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
-        android:text="Minha Localização"
+        android:text="Total de Ocorrência"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView5"
+        style="@style/TitleH3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
-        android:textColor="@color/white"
         android:layout_marginRight="15dp"
-        android:text="Minha Localização"
+        android:text="125 na cidade"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,14 +43,16 @@
 
     <TextView
         android:id="@+id/textView7"
+        style="@style/TitleH3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
-        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
-        android:text="Minha Localização"
+        android:text="32 no bairro"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,31 +60,20 @@
 
     <TextView
         android:id="@+id/textView9"
+        style="@style/TitleH3"
         android:layout_width="0dp"
-        android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
-        android:text="Minha Localização"
+        android:text="0 na rua"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
-        android:text="Minha Localização"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

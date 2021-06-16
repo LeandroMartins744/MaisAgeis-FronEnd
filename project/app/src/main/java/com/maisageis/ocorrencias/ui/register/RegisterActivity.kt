@@ -17,9 +17,7 @@ import com.maisageis.ocorrencias.model.response.StreetCepResponse
 import com.maisageis.ocorrencias.model.response.UserResponse
 import com.maisageis.ocorrencias.ui.action.SearchCepViewAction
 import com.maisageis.ocorrencias.ui.login.LoginActivity
-import com.maisageis.ocorrencias.util.LoadPage
-import com.maisageis.ocorrencias.util.ShowAlert
-import com.maisageis.ocorrencias.util.ToastAlert
+import com.maisageis.ocorrencias.util.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterActivity : AppCompatActivity() {
@@ -27,7 +25,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var loadPage: View
 
     private lateinit var txtNome: EditText
-    private lateinit var txtApelido: EditText
+    private lateinit var txtCPF: EditText
     private lateinit var txtEmail: EditText
     private lateinit var txtNovaSenha: EditText
     private lateinit var txtConfirmacao: EditText
@@ -71,8 +69,16 @@ class RegisterActivity : AppCompatActivity() {
         btnGravar.setOnClickListener {
             if(validTerms()) {
                 if (validInputs()) {
-                    if (validPassword())
-                        registerViewModel.register(createRequest())
+                    if (validPassword()) {
+                        if(validCpf(txtCPF.text.toString())){
+                            if(validEmail(txtEmail.text.toString()))
+                                registerViewModel.register(createRequest())
+                            else
+                                ToastAlert(this@RegisterActivity, "Email Inválido")
+                        }
+                        else
+                            ToastAlert(this@RegisterActivity, "CPF Inválido")
+                    }
                     else
                         ToastAlert(this@RegisterActivity, "Senha deve conter pelo menos 6 digitos!")
                 } else
@@ -90,12 +96,29 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(LoginActivity.newInstance(this))
             finish()
         }
+
+        txtCPF.setOnFocusChangeListener(){ _: View, b: Boolean ->
+            if(!b) {
+                if(!validCpf(txtCPF.text.toString())){
+                    ToastAlert(this, "CPF Inválido")
+                }
+            }
+        }
+
+        txtEmail.setOnFocusChangeListener(){ _: View, b: Boolean ->
+            if(!b) {
+                if(!validEmail(txtEmail.text.toString())){
+                    ToastAlert(this, "Email Inválido")
+                }
+            }
+        }
     }
 
     private fun validTerms(): Boolean = termsContract.isChecked
 
     private fun createRequest() = UserRequest(
-        txtApelido.text.toString(),
+        0, 0,
+        txtCPF.text.toString(),
         txtNome.text.toString(),
         txtNome.text.toString(),
         "",
@@ -116,7 +139,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun validInputs(): Boolean {
         return (
             !txtNome.text.isNullOrEmpty() &&
-            !txtApelido.text.isNullOrEmpty() &&
+            !txtCPF.text.isNullOrEmpty() &&
             !txtEmail.text.isNullOrEmpty() &&
             !txtNovaSenha.text.isNullOrEmpty() &&
             !txtConfirmacao.text.isNullOrEmpty() &&
@@ -134,7 +157,7 @@ class RegisterActivity : AppCompatActivity() {
         loadPage = findViewById(R.id.registerProgressBar)
 
         txtNome = findViewById(R.id.edtNome)
-        txtApelido = findViewById(R.id.edtCpf)
+        txtCPF = findViewById(R.id.edtCpf)
         txtEmail = findViewById(R.id.edtEmail)
         txtNovaSenha = findViewById(R.id.edtNovaSenha)
         txtConfirmacao = findViewById(R.id.edtConfirmacao)

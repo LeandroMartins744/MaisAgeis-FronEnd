@@ -40,9 +40,9 @@ class SliderActivity : AppCompatActivity() {
     private fun loadImageSlider(){
         imageList = ArrayList()
 
-        imageList.add(SlideModel(R.drawable.banner, scaleType = ScaleTypes.FIT))
-        imageList.add(SlideModel(R.drawable.bannerimg02, scaleType = ScaleTypes.FIT))
-        imageList.add(SlideModel(R.drawable.bannerimg03, scaleType = ScaleTypes.FIT))
+        imageList.add(SlideModel(R.drawable.banner01, scaleType = ScaleTypes.CENTER_CROP))
+        imageList.add(SlideModel(R.drawable.banner02, scaleType = ScaleTypes.CENTER_CROP))
+        imageList.add(SlideModel(R.drawable.banner03, scaleType = ScaleTypes.CENTER_CROP))
     }
 
     private fun initSetClicks() {
